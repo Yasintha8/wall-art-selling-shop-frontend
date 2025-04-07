@@ -2,7 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import { FaUsers } from "react-icons/fa6";
 import { MdOutlineStorefront } from "react-icons/md";
 import { FaFileInvoice } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+import AdminProductPage from "./admin/products";
 
 export default function AdminPage() {
     return (
@@ -14,9 +14,9 @@ export default function AdminPage() {
             </div>
             <div className="h-full bg-white w-[calc(100%-300px)] rounded-lg">
                 <Routes path="/*">
-                    <Route path="/products" element={<h1>Products</h1>} />
+                <Route path="/users" element={<h1>Users</h1>} />
+                    <Route path="/products" element={<AdminProductPage />} />
                     <Route path="/orders" element={<h1>Orders</h1>} />
-                    <Route path="/users" element={<h1>Users</h1>} />
                 </Routes>
             </div>
         </div>
