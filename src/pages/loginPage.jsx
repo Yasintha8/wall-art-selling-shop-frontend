@@ -45,18 +45,19 @@ export default function LoginPage() {
         <div className="w-full h-screen bg-[url(/login-bg.jpg)] bg-cover bg-center flex">
 
             <div className="w-[50%] h-full flex justify-center items-center">
-                <div className="w-[450px] h-[600px] backdrop-blur-xl shadow-2xl rounded-xl flex flex-col justify-center items-center">
+                <div className="w-[450px] h-[600px] backdrop-blur-xl border border-white shadow-2xl rounded-xl flex flex-col justify-center items-center">
+                <h2 className="text-white text-3xl font-semibold mb-[20px]">Welcome Back</h2>
                     <input 
                         onChange={(e) => 
                             setEmail(e.target.value)}
                         type="email" 
-                        className="w-[400px] h-[50px] border border-white rounded-xl text-center m-[5px]"
+                        className="w-[400px] h-[50px] border border-white rounded-xl text-center m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
                         placeholder="Email"/>
                     <input 
                         onChange={(e) => 
                             setPassword(e.target.value)}
                         type="password" 
-                        className="w-[400px] h-[50px] border border-white rounded-xl text-center m-[5px]"
+                        className="w-[400px] h-[50px] border border-white rounded-xl text-center m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
                         placeholder="Password"/>
 
                     <button 
