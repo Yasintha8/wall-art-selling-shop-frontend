@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function AddProductForm() {
 
@@ -12,12 +13,21 @@ export default function AddProductForm() {
     const[labeledPrice, setLabeledPrice] = useState("");
     const[description, setDescription] = useState("");
     const[stock, setStock] = useState("");
-
+    const[images, setImages] = useState([]);
 
     const navigate = useNavigate();
 
-    function handleSubmit(){
+    async function handleSubmit(){
 
+        const promisesArray = []
+        for(let i=0; i<images.length; i++){
+            const promise = mediaUpload(images[i])
+            promisesArray[i] = promise
+        }
+        try{
+
+        const result = await Promise.all(promisesArray)
+        
         const altNamesArray = altNames.split(",")
 
         const product = {
@@ -28,30 +38,23 @@ export default function AddProductForm() {
             labeledPrice: labeledPrice,
             description: description,
             stock: stock,
-            images: [
-                " https://picsum.photos/200/300?random=1",
-                " https://picsum.photos/200/300?random=2",
-                " https://picsum.photos/200/300?random=3",
-                " https://picsum.photos/200/300?random=4",
-            ]
+            images: result
         }
         const token = localStorage.getItem("token")
         console.log(token);
 
         // product added to db
-        axios.post(import.meta.env.VITE_BACKEND_URL+"/api/product", product, {
+        await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/product", product, {
             headers: {
                 "Authorization": "Bearer "+token
-            }
-        }).then(
-            () => {
-            toast.success("Product added successfully")
-            navigate("/admin/products")
-        }).catch(
-            () => {
-            toast.error("Product add failed")
+            },
         })
-        
+        toast.success("Product added successfully")
+        navigate("/admin/products")
+    }catch(error){
+        console.log(error);
+        toast.error("Product add failed")
+    }
     }
 
     return(
@@ -111,9 +114,21 @@ export default function AddProductForm() {
                     (e) => 
                         setDescription(e.target.value)
                 }
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
+                className="w-[400px] h-[80px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
                 placeholder="Description"
             />
+            <input 
+                type="file"
+                onChange={
+                    (e) => {
+                        setImages(e.target.files)
+                    }
+                }
+                multiple
+                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
+                placeholder="Upload Images"
+                 />
+
             {/* stock */}
             <input
                 value={stock}
@@ -133,3 +148,5 @@ export default function AddProductForm() {
         </div>
     )
 }
+
+
