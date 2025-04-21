@@ -53,13 +53,13 @@ export default function LoginPage() {
                         onChange={(e) => 
                             setEmail(e.target.value)}
                         type="email" 
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
+                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none "
                         placeholder="Email"/>
                     <input 
                         onChange={(e) => 
                             setPassword(e.target.value)}
                         type="password" 
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
+                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none "
                         placeholder="Password"/>
 
                     <button 
@@ -72,7 +72,7 @@ export default function LoginPage() {
                     
                     </button>
                     <p className="text-gray-800 mt-[20px]">
-                        Don't have an account yet? <span className="text-green-600 hover:text-green-700">
+                        Don't have an account yet? <span className="text-green-800 hover:text-green-900">
                         <Link to={"/register"}>Register Now</Link>
                     </span>
                     </p>
