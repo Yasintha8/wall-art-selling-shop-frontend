@@ -1,17 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
 
     const[email, setEmail] = useState("")
     const[password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
     const navigate =  useNavigate();
 
     function handleLogin(){
-        console.log("Email: " , email);
-        console.log("Password: " ,password);
+        setLoading(true);
 
         axios.post(import.meta.env.VITE_BACKEND_URL+"/api/user/login",{
             email: email,
@@ -30,11 +30,13 @@ export default function LoginPage() {
                     // Redirect to home page
                     navigate("/");
                 }
+            setLoading(false);
 
         }) .catch(
             (error) => {
                 console.log("Login failed", error.response.data);
                 toast.error(error.response.data.message||"Login failed")
+                setLoading(false);
             }
         )
 
@@ -63,7 +65,17 @@ export default function LoginPage() {
                     <button 
                         onClick={handleLogin}
                         className="w-[400px] h-[50px] bg-green-600 cursor-pointer text-white hover:bg-green-700 rounded-xl mt-[20px]">
-                    Login</button>
+                    
+                    {
+                        loading?"Loading...":"Login"
+                    }
+                    
+                    </button>
+                    <p className="text-gray-800 mt-[20px]">
+                        Don't have an account yet? <span className="text-green-600 hover:text-green-700">
+                        <Link to={"/register"}>Register Now</Link>
+                    </span>
+                    </p>
                 </div>
             </div>
 
