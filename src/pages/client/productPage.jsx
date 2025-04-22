@@ -29,7 +29,7 @@ export default function ProductPage() {
                 <div className="w-full h-full flex flex-wrap justify-center gap-4 p-4 ">
                     {
                         productList.map(
-                            (product, index) => {
+                            (product) => {
                                 return(
                                     <ProductCard key={product.productId} product={product} />
                                 )
