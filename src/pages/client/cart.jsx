@@ -35,7 +35,7 @@ export default function CartPage() {
                                 </button>
                                 <img src={item.image} className="h-full aspect-square object-cover" />
                                 <div className="h-full max-w-[300px] w-[300px] overflow-hidden">
-                                    <h1 className="text-xl font-bold">{item.name}</h1>
+                                    <h1 className="text-xl font-bold cursor-pointer" onClick={()=>{window.location.href="/overview/"+item.productId}}>{item.name}</h1>
                                     <h2 className="text-sm font-semibold text-gray-500">{item.altNames.join(" | ")}</h2>
                                     <h2 className="text-lg font-semibold text-gray-500">LKR: {item.price.toFixed(2)}</h2>
                                 </div>
