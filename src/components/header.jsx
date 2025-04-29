@@ -10,7 +10,7 @@ export default function Header() {
                 <Link to="/contact" className="hover:text-orange-400">Contact</Link>
                 <Link to="/reviews" className="hover:text-orange-400">Reviews</Link>
             </div>
-            <Link to="/cart" className="absolute right-[150px] text-3xl"> <BsCart4 className=" text-white"/></Link>
+            <Link to="/cart" className="absolute right-[150px] text-3xl"> <BsCart4 className="text-white"/></Link>
         </header>
     );
 }
