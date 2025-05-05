@@ -1,13 +1,46 @@
 import { TbTrash } from "react-icons/tb"
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
+import axios from "axios"
+import toast from "react-hot-toast"
 
 export default function CheckoutPage() {
 
     const location = useLocation()
     const [cart, setCart] = useState(location.state.items)
     const [cartRefresh, setCartRefresh] = useState(false)
+    const [name, setName] = useState("")
+    const [address, setAddress] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+
     const navigate = useNavigate()
+
+    function PlaceOrder(){
+        const orderData = {
+            name : name,
+            address : address,
+            phoneNumber : phoneNumber,
+            billItems : []
+        }
+        for(let i=0; i<cart.length; i++){
+            orderData.billItems[i] = {
+                productId : cart[i].productId,
+                quantity : cart[i].quantity
+            }
+        }
+        const token = localStorage.getItem("token")
+        axios.post(import.meta.env.VITE_BACKEND_URL+"/api/order", orderData, {
+            headers: {
+                "Authorization": "Bearer "+token
+            }
+        }).then(()=>{
+            toast.success("Order placed successfully")
+            navigate("/")
+        }).catch((error)=>{
+            console.log(error)
+            toast.error("Order place failed")
+        })
+    }
 
     function getTotal(){
         let total = 0;
@@ -94,19 +127,57 @@ export default function CheckoutPage() {
                     <h1 className="w-[100px] text-xl text-end pr-2">Net Total</h1>
                     <h1 className="w-[100px] text-xl text-end pr-2 border-b-[4px] border-double">{getTotal().toFixed(2)}</h1>
                 </div>
-                
-                <div className="w-full flex justify-end mt-4 mb-4">
-                    <button className="w-[170px] h-[50px] bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-all duration-300 " 
-                        onClick={()=>{
-                            navigate("/checkout",
-                                {
-                                    state: {
-                                        items: cart
-                                    }
-                                }
-                            )}}>
-                        Place Order</button>
-                </div>
+
+
+                {/* Checkout Form */}
+            <div className="w-full mt-10 p-6 bg-white rounded-lg shadow-md space-y-4">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">Customer Details</h2>
+
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+                <label htmlFor="name" className="w-[120px] text-lg font-medium text-gray-700">Name</label>
+                <input
+                type="text"
+                id="name"
+                className="flex-1 w-full md:w-[300px] h-[45px] px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+                />
+            </div>
+
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+                <label htmlFor="address" className="w-[120px] text-lg font-medium text-gray-700">Address</label>
+                <input
+                type="text"
+                id="address"
+                className="flex-1 w-full md:w-[300px] h-[45px] px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Enter your address"
+                />
+            </div>
+
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+                <label htmlFor="phone" className="w-[120px] text-lg font-medium text-gray-700">Phone Number</label>
+                <input
+                type="text"
+                id="phone"
+                className="flex-1 w-full md:w-[300px] h-[45px] px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder="Enter your phone number"
+                />
+            </div>
+
+            <div className="w-full flex justify-end">
+                <button
+                onClick={PlaceOrder}
+                className="mt-4 w-full md:w-[200px] h-[50px] bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all duration-300 cursor-pointer"
+                >
+                Place Order
+                </button>
+            </div>
+            </div>
             </div>
         </div>
     )
