@@ -1,22 +1,30 @@
 import { TbTrash } from "react-icons/tb"
-import getCart, { addToCart, getTotal, getTotalForLabelledPrice, removeFromCart } from "../../utils/cart"
-import toast from "react-hot-toast"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 
-export default function CartPage() {
+export default function CheckoutPage() {
 
-    const [cartLoaded, setCartLoaded] = useState(false)
-    const [cart, setCart] = useState([])
+    const location = useLocation()
+    const [cart, setCart] = useState(location.state.items)
+    const [cartRefresh, setCartRefresh] = useState(false)
     const navigate = useNavigate()
-    useEffect(
-        ()=>{
-            if(cartLoaded == false){
-                setCart(getCart())
-                setCartLoaded(true)
-            }
-        },[cartLoaded]
-    )
+
+    function getTotal(){
+        let total = 0;
+        cart.forEach((product) => {
+            total += product.price * product.quantity
+        })
+        return total
+    }
+
+    function getTotalForLabelledPrice(){
+        let total = 0;
+        cart.forEach((product) => {
+            total += product.labeledPrice * product.quantity
+        })
+        return total
+    }
+    
     return(
         <div className="w-full h-full flex justify-center p-[50px]">
             <div className="w-[700px]">
@@ -28,9 +36,8 @@ export default function CartPage() {
                                 <button className="absolute right-[-50px] bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center shadow cursor-pointer hover:bg-red-600 transition-all duration-300"
                                 onClick={
                                     ()=>{
-                                        removeFromCart(item.productId)
-                                        setCartLoaded(false)
-                                        toast.success("Item removed from cart")
+                                        const newCart = cart.filter((product) => product.productId !== item.productId)
+                                        setCart(newCart)
                                     }
                                 }>
                                     <TbTrash />
@@ -45,16 +52,21 @@ export default function CartPage() {
                                     <button className="text-2xl w-[20px] h-[20px] bg-gray-800 text-white rounded-full flex justify-center items-center cursor-pointer mx-[5px]"
                                         onClick={
                                             ()=>{
-                                                addToCart(item, -1)
-                                                setCartLoaded(false)
+                                                const newCart = cart
+                                                newCart[index].quantity -= 1
+                                                if(newCart[index].quantity <= 0)newCart[index].quantity = 1
+                                                setCart(newCart)
+                                                setCartRefresh(!cartRefresh)
                                         }}
                                     >-</button>
                                     <h1 className="text-lg">{item.quantity}</h1>
                                     <button className="text-lg w-[20px] h-[20px] bg-gray-800 text-white rounded-full flex justify-center items-center cursor-pointer mx-[5px]"
                                         onClick={
                                             ()=>{
-                                                addToCart(item, 1)
-                                                setCartLoaded(false)
+                                                 const newCart = cart
+                                                 newCart[index].quantity += 1
+                                                 setCart(newCart)
+                                                 setCartRefresh(!cartRefresh)
                                             }
                                         }
                                     >+</button>
@@ -93,7 +105,7 @@ export default function CartPage() {
                                     }
                                 }
                             )}}>
-                        Checkout</button>
+                        Place Order</button>
                 </div>
             </div>
         </div>

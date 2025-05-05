@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import Loader from "../../components/loader"
 import ImageSlider from "../../components/imageSlider"
 import getCart, { addToCart } from "../../utils/cart"
+import { useNavigate } from "react-router-dom"
 
 export default function ProductOverview() {
      const params =useParams()
@@ -15,6 +16,7 @@ export default function ProductOverview() {
 
      const [product, setProduct] = useState(null)
      const [status, setStatus] = useState("loading") //loading,loaded, error
+     const navigate = useNavigate()
 
      useEffect(
         ()=>{
@@ -71,7 +73,28 @@ export default function ProductOverview() {
                                 console.log("Product added to cart")
                             }
                         }>Add to Cart</button>
-                        <button className="bg-orange-400 text-white w-[200px] h-[50px] rounded-lg hover:bg-white hover:border border-orange-400 hover:text-orange-400 cursor-pointer transition-all duration-300 ml-[20px]">Buy Now</button>
+                        <button 
+                        onClick={
+                            ()=>{
+                                navigate("/checkout",{
+                                    state: {
+                                        items: [
+                                            {
+                                                productId: product._id,
+                                                name: product.name,
+                                                altNames: product.altNames,
+                                                price: product.price,
+                                                labeledPrice: product.labeledPrice,
+                                                image: product.images[0],
+                                                quantity: 1
+                                            }
+                                        ]
+                                    }
+                                })
+                            }
+                        }
+                        className="bg-orange-400 text-white w-[200px] h-[50px] rounded-lg hover:bg-white hover:border border-orange-400 hover:text-orange-400 cursor-pointer transition-all duration-300 ml-[20px]">
+                            Buy Now</button>
                     </div>
                 </div>
             </div>
