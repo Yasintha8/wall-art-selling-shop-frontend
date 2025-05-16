@@ -45,13 +45,15 @@ export default function ProductOverview() {
         }
         {
             status == "loaded"&&
-            <div className="w-full h-full flex">
-                <div className="w-[50%] h-full">
+            <div className="w-full h-full flex flex-col lg:flex-row">
+                <h1 className="text-3xl lg:hidden font-bold text-center">{product.name}</h1>
+                <h2 className="text-xl lg:hidden font-semibold text-gray-500 text-center mb-[40px]">{product.altNames.join(" | ")}</h2>
+                <div className="w-full lg:h-full lg:w-[50%]">
                     <ImageSlider images={product.images}/>
                 </div>
-                <div className="w-[50%] h-full p-[40px]">
-                    <h1 className="text-3xl font-bold text-center">{product.name}</h1>
-                    <h2 className="text-xl font-semibold text-gray-500 text-center mb-[40px]">{product.altNames.join(" | ")}</h2>
+                <div className="w-full lg:w-[50%] pt-[100px] h-full p-[40px]">
+                    <h1 className="hidden lg:block text-3xl font-bold text-center">{product.name}</h1>
+                    <h2 className="hidden lg:block text-xl font-semibold text-gray-500 text-center mb-[40px]">{product.altNames.join(" | ")}</h2>
                     <div className="w-full flex justify-center mb-[40px]">
                         {
                             product.labeledPrice>product.price? 
