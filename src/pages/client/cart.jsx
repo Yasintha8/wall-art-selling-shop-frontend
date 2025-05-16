@@ -37,9 +37,9 @@ export default function CartPage() {
                                 </button>
                                 <img src={item.image} className="h-full aspect-square object-cover rounded-lg" />
                                 <div className="h-full max-w-[300px] w-[300px] overflow-hidden">
-                                    <h1 className="text-xl font-bold cursor-pointer" onClick={()=>{window.location.href="/overview/"+item.productId}}>{item.name}</h1>
+                                    <h1 className="text-lg font-bold cursor-pointer" onClick={()=>{window.location.href="/overview/"+item.productId}}>{item.name}</h1>
                                     <h2 className="text-sm font-semibold text-gray-500">{item.altNames.join(" | ")}</h2>
-                                    <h2 className="text-lg font-semibold text-gray-500">LKR: {item.price.toFixed(2)}</h2>
+                                    <h2 className="text-lg font-semibold text-accent">LKR: {item.price.toFixed(2)}</h2>
                                 </div>
                                 <div className="h-full w-[100px] flex justify-center items-center">
                                     <button className="text-2xl w-[20px] h-[20px] bg-gray-800 text-white rounded-full flex justify-center items-center cursor-pointer mx-[5px]"
@@ -68,7 +68,7 @@ export default function CartPage() {
                     )
                 }
 
-                <div className="w-full flex justify-end">
+                <div className="w-full flex justify-end mt-4">
                     <h1 className="w-[100px] text-xl  text-end pr-2">Total</h1>
                     <h1 className="w-[100px] text-xl  text-end pr-2">{getTotalForLabelledPrice().toFixed(2)}</h1>
                 </div>
@@ -84,7 +84,7 @@ export default function CartPage() {
                 </div>
                 
                 <div className="w-full flex justify-end mt-4 mb-4">
-                    <button className="w-[170px] h-[50px] bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-all duration-300 " 
+                    <button className="w-[170px] h-[50px] bg-primary text-white rounded-lg hover:bg-primary-dark transition-all duration-300 cursor-pointer mb-4 " 
                         onClick={()=>{
                             navigate("/checkout",
                                 {

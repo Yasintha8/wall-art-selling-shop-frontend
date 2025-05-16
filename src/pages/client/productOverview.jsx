@@ -64,7 +64,7 @@ export default function ProductOverview() {
                     </div>
                     <p className="text-lg font-semibold text-gray-500 text-center mb-[40px]">{product.description}</p>
                     <div className="w-full flex justify-center mb-[40px]">
-                        <button className="bg-orange-400 text-white w-[200px] h-[50px] rounded-lg hover:bg-white hover:border border-orange-400 hover:text-orange-400 cursor-pointer transition-all duration-300"
+                        <button className="bg-primary text-white w-[200px] h-[50px] rounded-lg hover:bg-white hover:border  border-primary hover:text-primary cursor-pointer transition-all duration-300"
                         onClick={
                             ()=>{
                                 addToCart(product, 1)
@@ -93,7 +93,7 @@ export default function ProductOverview() {
                                 })
                             }
                         }
-                        className="bg-orange-400 text-white w-[200px] h-[50px] rounded-lg hover:bg-white hover:border border-orange-400 hover:text-orange-400 cursor-pointer transition-all duration-300 ml-[20px]">
+                        className="bg-secondary text-white w-[200px] h-[50px] rounded-lg hover:bg-white hover:border border-secondary hover:text-secondary cursor-pointer transition-all duration-300 ml-[20px]">
                             Buy Now</button>
                     </div>
                 </div>

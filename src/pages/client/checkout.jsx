@@ -172,7 +172,7 @@ export default function CheckoutPage() {
             <div className="w-full flex justify-end">
                 <button
                 onClick={PlaceOrder}
-                className="mt-4 w-full md:w-[200px] h-[50px] bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all duration-300 cursor-pointer"
+                className="mt-4 w-full md:w-[200px] h-[50px] bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-all duration-300 cursor-pointer"
                 >
                 Place Order
                 </button>
