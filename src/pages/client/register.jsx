@@ -41,72 +41,75 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="w-full h-screen bg-[url(/login-bg.jpg)] bg-cover bg-center flex">
-            <div className="w-[50%] h-full flex justify-center items-center bg-black/25">
-                <div className="w-[450px] h-[650px] backdrop-blur-xl border border-white shadow-2xl rounded-xl flex flex-col justify-center items-center">
-                    <h2 className="text-white text-4xl font-semibold mb-[20px]">Create Account</h2>
+       <div className="w-full min-h-screen flex flex-col md:flex-row bg-[url(/login-bg.jpg)] bg-cover bg-center">
+    {/* Left Side - Form */}
+    <div className="w-full md:w-1/2 flex justify-center items-center bg-black/30 p-4">
+        <div className="w-full max-w-md bg-white/10 backdrop-blur-xl border border-white shadow-2xl rounded-xl p-6 md:p-8">
+            <h2 className="text-white text-3xl md:text-4xl font-semibold mb-6 text-center">
+                Create Account
+            </h2>
 
-                    <input
-                        type="text"
-                        onChange={(e) => setFirstName(e.target.value)}
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                        placeholder="First Name"
-                    />
+            <input
+                type="text"
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full h-12 border border-white text-white placeholder-gray-300 rounded-xl p-4 mb-3 bg-transparent focus:outline-none focus:ring-1 focus:ring-white"
+                placeholder="First Name"
+            />
 
-                    <input
-                        type="text"
-                        onChange={(e) => setLastName(e.target.value)}
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                        placeholder="Last Name"
-                    />
+            <input
+                type="text"
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full h-12 border border-white text-white placeholder-gray-300 rounded-xl p-4 mb-3 bg-transparent focus:outline-none focus:ring-1 focus:ring-white"
+                placeholder="Last Name"
+            />
 
-                    <input
-                        type="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                        placeholder="Email"
-                    />
+            <input
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full h-12 border border-white text-white placeholder-gray-300 rounded-xl p-4 mb-3 bg-transparent focus:outline-none focus:ring-1 focus:ring-white"
+                placeholder="Email"
+            />
 
-                    <input
-                        type="text"
-                        onChange={(e) => setPhone(e.target.value)}
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                        placeholder="Phone"
-                    />
+            <input
+                type="text"
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full h-12 border border-white text-white placeholder-gray-300 rounded-xl p-4 mb-3 bg-transparent focus:outline-none focus:ring-1 focus:ring-white"
+                placeholder="Phone"
+            />
 
-                    <input
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                        placeholder="Password"
-                    />
+            <input
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full h-12 border border-white text-white placeholder-gray-300 rounded-xl p-4 mb-3 bg-transparent focus:outline-none focus:ring-1 focus:ring-white"
+                placeholder="Password"
+            />
 
-                    <input
-                        type="password"
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                        placeholder="Confirm Password"
-                    />
+            <input
+                type="password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full h-12 border border-white text-white placeholder-gray-300 rounded-xl p-4 mb-4 bg-transparent focus:outline-none focus:ring-1 focus:ring-white"
+                placeholder="Confirm Password"
+            />
 
-                    <button
-                        onClick={handleRegister}
-                        className="w-[400px] h-[50px] bg-green-600 cursor-pointer text-white hover:bg-green-700 rounded-xl mt-[20px]"
-                    >
-                        {loading ? "Creating Account..." : "Register"}
-                    </button>
+            <button
+                onClick={handleRegister}
+                className="w-full h-12 bg-green-600 text-white rounded-xl hover:bg-green-700 transition mb-4"
+            >
+                {loading ? "Creating Account..." : "Register"}
+            </button>
 
-                    <p className="text-gray-800 mt-[20px]">
-                        Already have an account?{" "}
-                        <span className="text-green-800 hover:text-green-900">
-                            <Link to="/login">Login</Link>
-                        </span>
-                    </p>
-                </div>
-            </div>
-
-            <div className="w-[50%] h-full">
-                {/* Empty right side / optional image */}
-            </div>
+            <p className="text-white text-sm text-center">
+                Already have an account?{" "}
+                <Link to="/login" className="text-green-300 hover:text-green-500 underline">
+                    Login
+                </Link>
+            </p>
         </div>
+    </div>
+
+    {/* Right Side - Optional */}
+    <div className="hidden md:block md:w-1/2 h-full"></div>
+</div>
+
     );
 }

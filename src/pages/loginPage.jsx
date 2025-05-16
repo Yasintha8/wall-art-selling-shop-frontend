@@ -75,53 +75,53 @@ export default function LoginPage() {
     }   
 
     return (
-        <div className="w-full h-screen bg-[url(/login-bg.jpg)] bg-cover bg-center flex">
+         <div className="w-full min-h-screen flex bg-[url('/login-bg.jpg')] bg-cover bg-center">
+            {/* Left Section - Login Form */}
+            <div className="w-full md:w-1/2 flex justify-center items-center bg-black/40 p-4">
+                <div className="w-full max-w-md bg-white/10 backdrop-blur-md border border-white shadow-2xl rounded-xl p-8">
+                    <h2 className="text-white text-3xl md:text-4xl font-semibold mb-6 text-center">
+                        Welcome Back
+                    </h2>
 
-            <div className="w-[50%] h-full flex justify-center items-center bg-black/25">
-                <div className="w-[450px] h-[550px] backdrop-blur-xl border border-white shadow-2xl rounded-xl flex flex-col justify-center items-center bg">
-                <h2 className="text-white text-4xl font-semibold mb-[20px]">Welcome Back</h2>
-                    <input 
-                        onChange={(e) => 
-                            setEmail(e.target.value)}
-                        type="email" 
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none "
-                        placeholder="Email"/>
-                    <input 
-                        onChange={(e) => 
-                            setPassword(e.target.value)}
-                        type="password" 
-                        className="w-[400px] h-[50px] border border-white text-white placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none "
-                        placeholder="Password"/>
+                    <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        className="w-full h-12 mb-4 border border-white text-white placeholder-gray-300 rounded-xl p-4 bg-transparent focus:outline-none"
+                        placeholder="Email"
+                    />
+                    <input
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        className="w-full h-12 mb-4 border border-white text-white placeholder-gray-300 rounded-xl p-4 bg-transparent focus:outline-none"
+                        placeholder="Password"
+                    />
 
-                    <button 
+                    <button
                         onClick={handleLogin}
-                        className="w-[400px] h-[50px] bg-green-600 cursor-pointer text-white hover:bg-green-700 rounded-xl mt-[20px]">
-                    
-                    {
-                        loading?"Loading...":"Login"
-                    }
-                    
+                        className="w-full h-12 bg-green-600 text-white rounded-xl hover:bg-green-700 transition mb-4"
+                    >
+                        {loading ? "Loading..." : "Login"}
                     </button>
-                    <button 
-                    onClick={loginWithGoogle}
-                    className="w-[400px] h-[50px] bg-white cursor-pointer text-gray-800 hover:shadow-lg hover:shadow-gray-500 rounded-xl mt-[20px] flex items-center justify-center">
-                        
-                        <FcGoogle className=" text-3xl mr-[10px]"/>
-                        {
-                            loading?"Loading...":"Login with Google"
-                        }
+
+                    <button
+                        onClick={loginWithGoogle}
+                        className="w-full h-12 bg-white text-gray-800 rounded-xl flex items-center justify-center hover:shadow-lg transition"
+                    >
+                        <FcGoogle className="text-2xl mr-2" />
+                        {loading ? "Loading..." : "Login with Google"}
                     </button>
-                    <p className="text-gray-800 mt-[20px]">
-                        Don't have an account yet? <span className="text-green-800 hover:text-green-900">
-                        <Link to={"/register"}>Register Now</Link>
-                    </span>
+
+                    <p className="text-white mt-6 text-sm text-center">
+                        Don't have an account yet?{" "}
+                        <Link to="/register" className="text-green-300 hover:text-green-500 underline">
+                            Register Now
+                        </Link>
                     </p>
                 </div>
             </div>
 
-            <div className="w-[50%] h-full">
-                
-            </div>
+            {/* Right Section - Decorative Panel */}
+            <div className="hidden md:block md:w-1/2 h-full"></div>
         </div>
     )
 }
