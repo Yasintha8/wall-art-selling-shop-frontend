@@ -19,13 +19,13 @@ export default function CartPage() {
     )
     return(
         <div className="w-full h-full flex justify-center p-[50px]">
-            <div className="w-[700px]">
+            <div className="w-full lg:w-[700px]">
                 {
                     cart.map(
                         (item , index)=>{
                             return(
-                            <div key={index} className="w-full h-[100px] bg-white shadow-2xl my-[5px] flex justify-between items-center relative p-[10px] rounded-lg">
-                                <button className="absolute right-[-50px] bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center shadow cursor-pointer hover:bg-red-600 transition-all duration-300"
+                            <div key={index} className="w-full lg:h-[100px] bg-white shadow-2xl my-[5px] flex lg:flex-row flex-col justify-between items-center relative p-[10px] rounded-lg">
+                                <button className="absolute right-4 lg:right-[-50px] bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center shadow cursor-pointer hover:bg-red-600 transition-all duration-300"
                                 onClick={
                                     ()=>{
                                         removeFromCart(item.productId)
@@ -35,8 +35,15 @@ export default function CartPage() {
                                 }>
                                     <TbTrash />
                                 </button>
-                                <img src={item.image} className="h-full aspect-square object-cover rounded-lg" />
-                                <div className="h-full max-w-[300px] w-[300px] overflow-hidden">
+                                <img src={item.image} className="h-[150px] lg:h-full aspect-square object-cover rounded-lg" />
+                                {/* product details for dekstop */}
+                                <div className="hidden lg:flex flex-col h-full max-w-[300px] w-[300px] overflow-hidden">
+                                    <h1 className="text-lg font-bold cursor-pointer" onClick={()=>{window.location.href="/overview/"+item.productId}}>{item.name}</h1>
+                                    <h2 className="text-sm font-semibold text-gray-500">{item.altNames.join(" | ")}</h2>
+                                    <h2 className="text-lg font-semibold text-accent">LKR: {item.price.toFixed(2)}</h2>
+                                </div>
+                                {/* product details for mobile */}
+                                <div className="lg:hidden h-full max-w-[300px] w-[300px] overflow-hidden text-center">
                                     <h1 className="text-lg font-bold cursor-pointer" onClick={()=>{window.location.href="/overview/"+item.productId}}>{item.name}</h1>
                                     <h2 className="text-sm font-semibold text-gray-500">{item.altNames.join(" | ")}</h2>
                                     <h2 className="text-lg font-semibold text-accent">LKR: {item.price.toFixed(2)}</h2>
