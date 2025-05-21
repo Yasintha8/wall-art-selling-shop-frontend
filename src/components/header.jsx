@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
+import UserData from "./userData";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,8 @@ export default function Header() {
 
             {/* Cart Icon */}
             <div className="flex-1 flex justify-end mr-6">
-                <Link to="/cart" className="text-3xl ">
+                <UserData />
+                <Link to="/cart" className="text-3xl ml-4 ">
                     <BsCart4 />
                 </Link>
             </div>
