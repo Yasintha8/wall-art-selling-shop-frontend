@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function ForgetPassword() {
     const [email, setEmail] = useState("");
@@ -6,6 +8,48 @@ export default function ForgetPassword() {
     const [emailSent, setEmailsent] = useState(false);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    function sendEmail(){
+        axios.post(import.meta.env.VITE_BACKEND_URL+"/api/user/sendMail",{
+            email:email
+        }).then(
+            (response)=>{
+                console.log(response.data);
+                setEmailsent(true);
+                toast.success("Email sent successfully")
+            }
+        ).catch(
+            (error)=>{
+                console.log(error);
+                toast.error("Email sending failed")
+            }
+        );
+    }
+
+    function changePassword(){
+        if(password !== confirmPassword){
+            toast.error("Passwords do not match");
+            return;
+        }
+        axios.post(import.meta.env.VITE_BACKEND_URL+"/api/user/changePW",{
+            email:email,
+            otp:otp,
+            password:password
+        }).then(
+            (response)=>{
+                console.log(response.data);
+                toast.success("Password reset successfully");
+                window.location.href = "/login";
+            }
+        ).catch(
+            (error)=>{
+                console.log(error);
+                toast.error("Password reset failed");
+                window.location.reload();
+            }
+        );
+    }
+
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-200">
@@ -51,6 +95,7 @@ export default function ForgetPassword() {
                             />
                         </div>
                         <button
+                        onClick={changePassword}
                             type="submit"
                             className="w-full bg-primary-dark text-white py-2 px-4 rounded-md hover:bg-primary transition duration-300 cursor-pointer"
                         >
@@ -71,7 +116,7 @@ export default function ForgetPassword() {
                         id="email"
                         placeholder="you@example.com"
                         className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        onClick={
+                        onChange={
                             (e) => 
                                 setEmail(e.target.value)
                         }
@@ -80,8 +125,12 @@ export default function ForgetPassword() {
                     <button
                         type="submit"
                         className="w-full bg-primary-dark text-white py-2 px-4 rounded-md hover:bg-primary transition duration-300 cursor-pointer"
+                        onClick={(e) => {
+                            e.preventDefault(); // prevent form submission
+                            sendEmail();
+                        }}
                     >
-                        Send Reset Link
+                        Send OTP
                     </button>
                 </form>
             </div>
