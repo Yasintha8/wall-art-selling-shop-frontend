@@ -56,7 +56,7 @@ export default function LoginPage() {
                 const user = response.data.user;
                 if(user.role === "admin"){
                     // Redirect to admin page
-                    navigate("/admin");
+                    navigate("/admin/dashboard");
                 } else {
                     // Redirect to home page
                     navigate("/");

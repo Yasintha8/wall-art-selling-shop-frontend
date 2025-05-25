@@ -44,6 +44,12 @@ export default function ProductPage() {
                     value={search}
                     className="w-[300px] h-[40px] border-[1px] border-gray-400 rounded-md px-2 mt-5"
                     onChange={(e) => setSearch(e.target.value)}
+                    // search product by click enter
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            searchProducts();
+                        }
+                    }}
                     />
                     <button
                     onClick={() => searchProducts(search)}
@@ -54,6 +60,7 @@ export default function ProductPage() {
                     <button 
                     onClick={()=>{
                         setProductsLoaded(false)
+                        setSearch("")
                     }}
                     className="w-[100px] h-[40px] bg-[var(--color-primary)] text-white rounded-md ml-2 mt-5 cursor-pointer">
                         Reset
