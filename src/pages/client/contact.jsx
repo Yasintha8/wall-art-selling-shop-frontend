@@ -48,7 +48,7 @@ export default function Contact() {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-primary-dark transition"
+                            className="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-primary-dark transition cursor-pointer"
                         >
                             Send Message
                         </button>
