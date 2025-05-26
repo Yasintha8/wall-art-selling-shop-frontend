@@ -7,6 +7,7 @@ import CheckoutPage from "./client/checkout";
 import Home from "./client/home";
 import Contact from "./client/contact";
 import Review from "./client/review";
+import Footer from "../components/footer";
 
 export default function HomePage() {
     return (
@@ -23,7 +24,8 @@ export default function HomePage() {
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/*" element={<h1>404 Not Found</h1>} />
                 </Routes>
-            </div>
+                <Footer />
+            </div>       
         </div>
     );
 }
