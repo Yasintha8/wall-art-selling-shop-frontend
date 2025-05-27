@@ -66,6 +66,7 @@ export default function AdminProductPage() {
                                 <th className="p-3 text-left">Name</th>
                                 <th className="p-3 text-right">Price</th>
                                 <th className="p-3 text-right">Labeled Price</th>
+                                <th className="p-3 text-right">Category</th>
                                 <th className="p-3 text-center">Stock</th>
                                 <th className="p-3 text-center">Actions</th>
                             </tr>
@@ -78,8 +79,9 @@ export default function AdminProductPage() {
                                 >
                                     <td className="p-3 text-gray-700">{product.productId}</td>
                                     <td className="p-3 text-gray-700">{product.name}</td>
-                                    <td className="p-3 text-right text-gray-700">${product.price}</td>
-                                    <td className="p-3 text-right text-gray-700">${product.labeledPrice}</td>
+                                    <td className="p-3 text-right text-gray-700">LKR.{product.price}</td>
+                                    <td className="p-3 text-right text-gray-700">LKR.{product.labeledPrice}</td>
+                                    <td className="p-3 text-right text-gray-700">{product.category}</td>
                                     <td className="p-3 text-center text-gray-700">{product.stock}</td>
                                     <td className="p-3 text-center">
                                         <div className="flex justify-center gap-4">

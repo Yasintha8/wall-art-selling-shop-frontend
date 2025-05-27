@@ -11,11 +11,14 @@ export default function AddProductForm() {
     const[altNames, setAltNames] = useState("");
     const[price, setPrice] = useState("");
     const[labeledPrice, setLabeledPrice] = useState("");
+    const [category, setCategory] = useState("Select Category");
     const[description, setDescription] = useState("");
     const[stock, setStock] = useState("");
     const[images, setImages] = useState([]);
 
     const navigate = useNavigate();
+
+    
 
     async function handleSubmit(){
 
@@ -36,6 +39,7 @@ export default function AddProductForm() {
             altNames: altNamesArray,  
             price: price,
             labeledPrice: labeledPrice,
+            category: category,
             description: description,
             stock: stock,
             images: result
@@ -59,7 +63,7 @@ export default function AddProductForm() {
 
     return(
         <div className="w-full h-full rounded-lg flex justify-center items-center">
-            <div className="w-[500px] h-[650px] rounded-lg shadow-lg flex flex-col items-center">
+            <div className="w-[500px] h-[680px] rounded-lg shadow-lg flex flex-col items-center p-2">
             <h1 className="text-3xl font-bold text-gray-700 m-[10px]">Add Product</h1>
             <input 
                 value={productId}
@@ -108,15 +112,27 @@ export default function AddProductForm() {
                 className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
                 placeholder="Labeled Price"
             />
+            <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-[400px] h-[50px] border border-gray-500 text-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
+        >
+            <option value="Select Category">Select Category</option>
+            <option value="Living Rooms">Living Rooms</option>
+            <option value="Religious">Religious</option>
+            <option value="Kitchen">Kitchen</option>
+            <option value="Resturant">Resturant</option>
+        </select>
             <textarea
                 value={description}
                 onChange={
                     (e) => 
                         setDescription(e.target.value)
                 }
-                className="w-[400px] h-[80px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
+                className="w-[400px] h-[200px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
                 placeholder="Description"
             />
+
             <input 
                 type="file"
                 onChange={
