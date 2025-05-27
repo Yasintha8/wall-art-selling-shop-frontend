@@ -52,7 +52,7 @@ export default function AdminProductPage() {
     }
 
     return (
-        <div className="w-full h-full p-6 bg-white rounded-lg shadow-md relative">
+        <div className="w-full p-6 bg-white rounded-lg shadow-md relative">
             <h1 className="text-2xl font-semibold mb-6 text-gray-800">🛍️ Product Management</h1>
 
             {!loaded ? (

@@ -115,7 +115,7 @@ export default function AddProductForm() {
             <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-[400px] h-[50px] border border-gray-500 text-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
+            className="w-[400px] h-[80px] border border-gray-500 text-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
         >
             <option value="Select Category">Select Category</option>
             <option value="Living Rooms">Living Rooms</option>

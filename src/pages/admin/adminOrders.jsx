@@ -47,7 +47,7 @@ export function AdminOrdersPage() {
     }
 
     return (
-        <div className="w-full h-full p-6 bg-white rounded-lg shadow-md">
+        <div className="w-full p-6 bg-white rounded-lg shadow-md">
             <h1 className="text-2xl font-semibold mb-6 text-gray-800">📦 Order Management</h1>
 
             {!loaded ? (
