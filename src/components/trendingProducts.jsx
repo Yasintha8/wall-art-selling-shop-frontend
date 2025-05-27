@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "./loader";
+import { Link } from "react-router-dom";
+
 export default function TrendingProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ export default function TrendingProducts() {
   if (loading) {
     return (
       <div className="container mx-auto px-6 py-12 text-center text-gray-700">
-        <Loader/>
+        <Loader />
       </div>
     );
   }
@@ -43,9 +45,10 @@ export default function TrendingProducts() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {products.map(({ _id, productId, name, price, images }) => (
-            <div
+            <Link
+              to={`/overview/${productId}`}
               key={_id || productId}
-              className="rounded-lg p-4 shadow hover:shadow-lg transition"
+              className="rounded-lg p-4 shadow hover:shadow-lg transition block"
             >
               <img
                 src={images[0]}
@@ -54,8 +57,9 @@ export default function TrendingProducts() {
                 loading="lazy"
               />
               <h3 className="mt-4 font-semibold text-gray-800">{name}</h3>
-              <p className="text-accent font-bold mt-2">LKR{price.toFixed(2)}</p>
-            </div>
+              <p className="text-gray-600 text-sm">{productId}</p>
+              <p className="text-accent font-bold mt-2">LKR {price.toFixed(2)}</p>
+            </Link>
           ))}
         </div>
       )}

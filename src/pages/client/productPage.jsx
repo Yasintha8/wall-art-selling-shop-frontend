@@ -36,7 +36,7 @@ export default function ProductPage() {
 }
 
     return (
-        <div className="w-full h-full">
+        <div className="min-h-screen flex flex-col">
             <div className="w-full h-[50px] flex items-center justify-center">
                 <input
                     type="text"
@@ -68,7 +68,7 @@ export default function ProductPage() {
             </div>
             {
                 productsLoaded?
-                <div className="w-full h-full flex flex-wrap justify-center gap-4 p-4 ">
+                <div className="w-full h-full flex flex-wrap justify-center gap-4 p-4 mt-[20px]">
                     {
                         productList.map(
                             (product) => {
