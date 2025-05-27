@@ -1,3 +1,4 @@
+import CategorySection from "../../components/categorySection";
 import HeroCarousel from "../../components/heroCarousel";
 import TrendingProducts from "../../components/trendingProducts";
 
@@ -8,6 +9,7 @@ export default function Home() {
         <div>
           <HeroCarousel />
           <TrendingProducts />
+          <CategorySection />
         </div>
     )
 }
