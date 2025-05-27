@@ -17,8 +17,10 @@ export default function CategorySection() {
       <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">Shop by Category</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {categories.map((cat) => (
-          <Link
-            to={`/category/${cat.name}`}
+          <div
+           onClick={()=>{
+            window.location.href = '/products'
+           }}
             key={cat.id}
             className="group block rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition duration-300 bg-white"
           >
@@ -32,7 +34,7 @@ export default function CategorySection() {
             <div className="p-4 text-center">
               <h3 className="text-lg font-semibold text-gray-700 group-hover:text-blue-600 transition">{cat.name}</h3>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>

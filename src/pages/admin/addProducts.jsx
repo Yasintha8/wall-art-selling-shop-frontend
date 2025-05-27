@@ -62,106 +62,99 @@ export default function AddProductForm() {
     }
 
     return(
-        <div className="w-full h-full rounded-lg flex justify-center items-center">
-            <div className="w-[500px] h-[680px] rounded-lg shadow-lg flex flex-col items-center p-2">
-            <h1 className="text-3xl font-bold text-gray-700 m-[10px]">Add Product</h1>
-            <input 
-                value={productId}
-                onChange={
-                    (e) => 
-                        setProductID(e.target.value)
-                }
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Product ID"
-            />
-            <input 
-                value={name}
-                onChange={
-                    (e) => 
-                        setName(e.target.value)
-                }
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Product Name"
-            />
-            <input 
-                value={altNames}
-                onChange={
-                    (e) => 
-                        setAltNames(e.target.value)
-                }
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Alternative Names"
-            />
-            <input
-                value={price}
-                onChange={
-                    (e) => 
-                        setPrice(e.target.value)
-                }
-                type="number"
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Price"
-            />
-            <input
-                value={labeledPrice}
-                onChange={
-                    (e) => 
-                        setLabeledPrice(e.target.value)
-                } 
-                type="number"
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Labeled Price"
-            />
-            <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="w-[400px] h-[80px] border border-gray-500 text-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-        >
-            <option value="Select Category">Select Category</option>
-            <option value="Living Rooms">Living Rooms</option>
-            <option value="Religious">Religious</option>
-            <option value="Kitchen">Kitchen</option>
-            <option value="Resturant">Resturant</option>
-        </select>
-            <textarea
-                value={description}
-                onChange={
-                    (e) => 
-                        setDescription(e.target.value)
-                }
-                className="w-[400px] h-[200px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Description"
-            />
+    <div className="w-full flex justify-center shadow-xl items-start ">
+        <div className="w-full max-w-2xl  bg-gray-100/60 rounded-xl shadow-xl p-8 space-y-6">
+    <h1 className="text-3xl font-extrabold text-gray-800 text-center mb-6">Add Product</h1>
 
-            <input 
-                type="file"
-                onChange={
-                    (e) => {
-                        setImages(e.target.files)
-                    }
-                }
-                multiple
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Upload Images"
-                 />
+    <input
+      value={productId}
+      onChange={(e) => setProductID(e.target.value)}
+      placeholder="Product ID"
+      className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
 
-            {/* stock */}
-            <input
-                value={stock}
-                onChange={
-                    (e) => 
-                        setStock(e.target.value)
-                }
-                type="number"
-                className="w-[400px] h-[50px] border border-gray-500 text-gray placeholder-gray rounded-xl p-4 m-[5px] focus:outline-none focus:ring-1 focus:ring-white"
-                placeholder="Stock"
-            />
-            <div className="w-[400px] h-[100px] flex justify-between items-center rounded-lg">
-                <Link to={"/admin/products"} className="bg-red-400 text-white text-xl p-[10px] w-[180px] text-center rounded-lg hover:bg-red-500  cursor-pointer ">Cancle</Link>
-                <button onClick={handleSubmit} className="bg-green-400 text-white text-xl p-[10px] w-[180px] text-center rounded-lg ml-[10px] hover:bg-green-500  cursor-pointer ">Add Product</button>
-            </div>
-            </div>
-        </div>
+    <input
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      placeholder="Product Name"
+      className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <input
+      value={altNames}
+      onChange={(e) => setAltNames(e.target.value)}
+      placeholder="Alternative Names"
+      className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <div className="flex gap-4">
+      <input
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        type="number"
+        placeholder="Price"
+        className="flex-1 h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <input
+        value={labeledPrice}
+        onChange={(e) => setLabeledPrice(e.target.value)}
+        type="number"
+        placeholder="Labeled Price"
+        className="flex-1 h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <select
+      value={category}
+      onChange={(e) => setCategory(e.target.value)}
+      className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="">Select Category</option>
+      <option value="Living Rooms">Living Rooms</option>
+      <option value="Religious">Religious</option>
+      <option value="Kitchen">Kitchen</option>
+      <option value="Resturant">Resturant</option>
+    </select>
+
+    <textarea
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      placeholder="Description"
+      className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <input
+      type="file"
+      onChange={(e) => setImages(e.target.files)}
+      multiple
+      className="w-full py-2 px-4 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <input
+      value={stock}
+      onChange={(e) => setStock(e.target.value)}
+      type="number"
+      placeholder="Stock"
+      className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <div className="flex justify-between gap-4 mt-6">
+      <Link
+        to="/admin/products"
+        className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold text-center py-3 rounded-lg transition"
+      >
+        Cancel
+      </Link>
+      <button
+        onClick={handleSubmit}
+        className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition"
+      >
+        Add Product
+      </button>
+    </div>
+  </div>
+</div>
+
     )
 }
 
