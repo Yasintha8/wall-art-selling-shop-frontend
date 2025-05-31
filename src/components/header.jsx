@@ -8,8 +8,15 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="w-full h-[70px] flex items-center justify-between bg-primary text-white px-4 relative">
-            
+        <header className="fixed top-0 left-0 w-full h-[70px] flex items-center justify-between bg-primary text-white px-4 z-50 shadow-md backdrop-blur-md">
+            {/* Logo */}
+            <Link to="/" className="hidden md:flex items-center ml-6">
+                <img
+                    src="/logo.png"
+                    alt="Logo"
+                    className="h-12 w-auto object-contain "
+                />
+                </Link>
             {/* Mobile: Hamburger Icon */}
             <div className="lg:hidden">
                 <GiHamburgerMenu

@@ -124,7 +124,7 @@ export function AdminOrdersPage() {
                                     className="absolute top-3 right-3 bg-white p-1 rounded-full shadow-md hover:bg-gray-100"
                                     title="Close"
                                 >
-                                    <IoCloseSharp className="text-2xl text-gray-700" />
+                                    <IoCloseSharp className="text-2xl text-gray- cursor-pointer" />
                                 </button>
 
                                 <div className="bg-gray-800 text-white p-6 rounded-t-lg">
@@ -133,7 +133,7 @@ export function AdminOrdersPage() {
                                     </h2>
                                     <p>Date: {new Date(displayingOrder.date).toDateString()}</p>
                                     <p>Status: {displayingOrder.status}</p>
-                                    <p>Total: ${displayingOrder.total.toFixed(2)}</p>
+                                    <p>Total: LKR.{displayingOrder.total.toFixed(2)}</p>
                                 </div>
 
                                 <div className="overflow-y-auto p-4 h-[calc(100%-160px)]">
@@ -155,7 +155,7 @@ export function AdminOrdersPage() {
                                                     {item.name} | Qty: {item.quantity}
                                                 </p>
                                                 <p className="text-sm text-gray-500">
-                                                    Price: ${item.price.toFixed(2)} | Total: $
+                                                    Price: LKR.{item.price.toFixed(2)} | Total: LKR.
                                                     {(item.price * item.quantity).toFixed(2)}
                                                 </p>
                                             </div>

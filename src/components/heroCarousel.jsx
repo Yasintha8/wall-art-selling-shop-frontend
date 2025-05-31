@@ -39,7 +39,7 @@ const HeroCarousel = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-[calc(100vh-70px)]">
+            <div className="relative w-full h-screen">
               <img
                 src={slide.image}
                 alt={`Slide ${index + 1}`}
