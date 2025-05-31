@@ -1,5 +1,7 @@
 import CategorySection from "../../components/categorySection";
+import CustomArt from "../../components/customArt";
 import HeroCarousel from "../../components/heroCarousel";
+import NewArrivals from "../../components/newArrivals";
 import TrendingProducts from "../../components/trendingProducts";
 
 
@@ -10,6 +12,8 @@ export default function Home() {
           <HeroCarousel />
           <CategorySection />
           <TrendingProducts />
+          <NewArrivals />
+          <CustomArt />
         </div>
     )
 }
