@@ -28,7 +28,7 @@ export default function Header() {
             />
             <Link to="/" className="flex items-center">
               <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
-                Vibe<span className="text-secondary">Canvas</span>
+                Vibe<span className="text-accent ">Canvas</span>
               </h1>
             </Link>
           </div>

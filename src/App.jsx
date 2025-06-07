@@ -8,12 +8,14 @@ import RegisterPage from './pages/client/register';
 import HomePage from './pages/homePage';
 import ForgetPassword from './pages/client/forgetPassword';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import ScrollToTop from './scrollToTop';
 
 function App() {
 
   return (
     <GoogleOAuthProvider clientId='859443425171-u5ear3bkdmsionihve91ge7j9509fral.apps.googleusercontent.com'>
       <BrowserRouter>
+      <ScrollToTop/>
       <Toaster position='top-right'/>
         <Routes path="/*">
         <Route path="/admin/*" element={<AdminPage />} />
