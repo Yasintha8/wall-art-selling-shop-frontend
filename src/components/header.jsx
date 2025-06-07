@@ -44,16 +44,7 @@ export default function Header() {
           {/* Right: Search + Cart + User */}
           <div className="flex items-center gap-4">
             {/* Search Input (Desktop only) */}
-            <div className="hidden lg:flex items-center border border-gray-300 rounded-lg">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="px-3 py-1 rounded-full text-black focus:outline-none"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              />
-            </div>
+            
 
             <UserData />
             <Link to="/cart" className="text-2xl hover:text-secondary transition">

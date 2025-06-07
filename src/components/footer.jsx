@@ -39,13 +39,13 @@ export default function Footer() {
           <h3 className="text-xl font-semibold text-white mb-4">Contact Us</h3>
           <p>1234 Market Street</p>
           <p>San Francisco, CA 94103</p>
-          <p>Email: <a href="mailto:support@yourbrand.com" className="hover:text-white transition">support@yourbrand.com</a></p>
+          <p>Email: <a href="mailto:support@vibecanvas.com" className="hover:text-white transition">support@yourbrand.com</a></p>
           <p>Phone: <a href="tel:+1234567890" className="hover:text-white transition">+1 (234) 567-890</a></p>
         </div>
       </div>
 
       <div className="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} YourBrand. All rights reserved.
+        &copy; {new Date().getFullYear()} VibeCanvas. All rights reserved.
       </div>
     </footer>
   );

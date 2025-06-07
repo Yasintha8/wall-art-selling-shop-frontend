@@ -1,4 +1,3 @@
-// components/SearchBox.jsx
 export default function SearchBox({
   search,
   setSearch,
