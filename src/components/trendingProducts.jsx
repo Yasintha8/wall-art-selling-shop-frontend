@@ -40,7 +40,7 @@ export default function TrendingProducts() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-12">
+    <div className="my-8 px-6 max-w-7xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary-dark text-center">Trending Wall Arts</h2>
       {products.length === 0 ? (
         <p className="text-gray-600">No trending products found.</p>

@@ -26,7 +26,7 @@ const HeroCarousel = () => {
   ];
 
   return (
-    <section className="text-white">
+    <section className="text-white my-8 px-6 max-w-7xl mx-auto">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={0}
@@ -35,22 +35,22 @@ const HeroCarousel = () => {
         autoplay={{ delay: 8000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation={true}
-        className="relative"
+        className="relative rounded-lg"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-screen">
+            <div className="relative w-full">
               <img
                 src={slide.image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-[400px] object-cover"
               />
               <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-6">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">{slide.title}</h2>
                 <p className="text-lg mb-6">{slide.description}</p>
                 <button 
                   onClick={() => navigate("/products")}
-                  className="bg-[var(--color-accent)] hover:bg-orange-600 px-6 py-3 rounded-full text-white font-semibold text-lg"
+                  className="bg-[var(--color-accent)] hover:bg-orange-600 px-6 py-3 rounded-full text-white font-semibold text-lg cursor-pointer"
                 >
                   Shop Now
                 </button>

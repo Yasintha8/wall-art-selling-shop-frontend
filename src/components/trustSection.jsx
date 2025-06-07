@@ -1,13 +1,13 @@
 export default function TrustSection() {
   return (
-    <section className="py-16 px-6 md:px-20">
+    <section className="my-8 px-6 max-w-7xl mx-auto">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary-dark text-center">
           Why Shop With Us
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Feature 1 */}
-          <div className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
+          <div className="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-lg transition">
             <div className="text-4xl mb-4 text-gray-700">
               🚚
             </div>
@@ -18,7 +18,7 @@ export default function TrustSection() {
           </div>
 
           {/* Feature 2 */}
-          <div className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
+          <div className="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-lg transition">
             <div className="text-4xl mb-4 text-gray-700">
               🔒
             </div>
@@ -29,7 +29,7 @@ export default function TrustSection() {
           </div>
 
           {/* Feature 3 */}
-          <div className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition">
+          <div className="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-lg transition">
             <div className="text-4xl mb-4 text-gray-700">
               ✅
             </div>

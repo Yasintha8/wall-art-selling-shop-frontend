@@ -39,7 +39,7 @@ export default function NewArrivals() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-12">
+    <div className="my-8 px-6 max-w-7xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary-dark text-center">
         New Arrivals
       </h2>
