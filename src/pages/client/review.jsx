@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
+// Default initial reviews
 const initialReviews = [
   {
-    name: "Alice Johnson",
+    name: "Nishan Ranasinghe",
     title: "Verified Buyer",
     image: "https://i.pravatar.cc/100?img=1",
     rating: 5,
@@ -10,7 +11,7 @@ const initialReviews = [
       "Amazing service and fast delivery. The quality of the products exceeded my expectations. Will definitely shop again!",
   },
   {
-    name: "Michael Lee",
+    name: "Roshan Perera",
     title: "Loyal Customer",
     image: "https://i.pravatar.cc/100?img=2",
     rating: 4,
@@ -18,7 +19,7 @@ const initialReviews = [
       "Very satisfied with the overall experience. Customer support was helpful and the packaging was excellent.",
   },
   {
-    name: "Sara Kim",
+    name: "Amal Fernando",
     title: "First-Time Buyer",
     image: "https://i.pravatar.cc/100?img=3",
     rating: 5,
@@ -26,7 +27,7 @@ const initialReviews = [
       "Love the design and quality. The site is easy to navigate and checkout was a breeze. Highly recommended!",
   },
   {
-    name: "Emily Davis",
+    name: "Vishwa Senanayake",
     title: "Verified Buyer",
     image: "https://i.pravatar.cc/100?img=4",
     rating: 3,
@@ -35,6 +36,7 @@ const initialReviews = [
   },
 ];
 
+// Star icon component
 function Star({ filled }) {
   return (
     <svg
@@ -48,7 +50,11 @@ function Star({ filled }) {
 }
 
 export default function Review() {
-  const [reviews, setReviews] = useState(initialReviews);
+  const [reviews, setReviews] = useState(() => {
+    const saved = localStorage.getItem("reviews");
+    return saved ? JSON.parse(saved) : initialReviews;
+  });
+
   const [form, setForm] = useState({
     name: "",
     title: "",
@@ -72,7 +78,9 @@ export default function Review() {
         ...form,
         image: `https://i.pravatar.cc/100?u=${form.name + Date.now()}`,
       };
-      setReviews([newReview, ...reviews]);
+      const updatedReviews = [newReview, ...reviews];
+      setReviews(updatedReviews);
+      localStorage.setItem("reviews", JSON.stringify(updatedReviews));
       setForm({ name: "", title: "", comment: "", rating: 0 });
     } else {
       alert("Please fill out all fields and select a rating.");
@@ -99,6 +107,7 @@ export default function Review() {
                 onChange={handleInputChange}
                 placeholder="Your Name"
                 className="border border-gray-300 rounded px-4 py-2 w-full"
+                required
               />
               <input
                 type="text"
@@ -107,6 +116,7 @@ export default function Review() {
                 onChange={handleInputChange}
                 placeholder="Your Title (e.g., Verified Buyer)"
                 className="border border-gray-300 rounded px-4 py-2 w-full"
+                required
               />
             </div>
             <textarea
@@ -116,6 +126,7 @@ export default function Review() {
               placeholder="Your Review"
               rows={4}
               className="border border-gray-300 rounded px-4 py-2 w-full"
+              required
             />
             <div className="flex items-center gap-2">
               {[...Array(5)].map((_, i) => (
@@ -127,7 +138,7 @@ export default function Review() {
             </div>
             <button
               type="submit"
-              className="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded transition"
+              className="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded transition cursor-pointer"
             >
               Submit Review
             </button>

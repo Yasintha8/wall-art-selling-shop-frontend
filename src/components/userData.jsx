@@ -64,7 +64,7 @@ export default function UserData() {
       {/* User Icon */}
       <button
         onClick={() => setShowLogout((prev) => !prev)}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-white hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-white hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition cursor-pointer"
         aria-haspopup="true"
         aria-expanded={showLogout}
       >
