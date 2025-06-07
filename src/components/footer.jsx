@@ -4,7 +4,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Brand & About */}
         <div>
-          <img src="/logo.png" alt="" />
+          <h1 className="text-2xl font-semibold text-white mb-4">Vibe<span className="text-secondary">Canvas</span></h1>
+          {/* <img src="/logo.png" alt="" /> */}
           <p className="text-gray-400">
             YourBrand is dedicated to providing the best products and customer experience. Quality and service are our top priorities.
           </p>
