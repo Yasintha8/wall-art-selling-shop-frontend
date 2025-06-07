@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
@@ -6,71 +6,123 @@ import UserData from "./userData";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchTerm.trim().length > 0) {
+      navigate(`/products?search=${encodeURIComponent(searchTerm)}`);
+      setIsOpen(false);
+    }
+  };
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full h-[70px] flex items-center justify-between bg-primary text-white px-6 md:px-10 z-50 shadow-lg backdrop-blur-lg transition-all duration-300">
-        {/* Logo */}
-        <Link to="/" className="hidden md:flex items-center">
-          <h1 className="text-3xl font-extrabold tracking-tight">
-            Vibe<span className="text-secondary">Canvas</span>
-          </h1>
-        </Link>
+      <header className="fixed top-0 left-0 w-full h-[70px] flex items-center justify-between bg-primary text-white px-4 md:px-10 z-50 shadow-lg backdrop-blur-lg">
+        <div className="flex items-center justify-between w-full">
+          {/* Left: Hamburger + Logo */}
+          <div className="flex items-center gap-4">
+            <GiHamburgerMenu
+              className="text-3xl lg:hidden cursor-pointer hover:scale-110 transition-transform"
+              onClick={() => setIsOpen(true)}
+            />
+            <Link to="/" className="flex items-center">
+              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                Vibe<span className="text-secondary">Canvas</span>
+              </h1>
+            </Link>
+          </div>
 
-        {/* Mobile: Hamburger Icon */}
-        <div className="lg:hidden">
-          <GiHamburgerMenu
-            className="text-3xl cursor-pointer hover:scale-110 transition-transform"
-            onClick={() => setIsOpen(true)}
-          />
+          {/* Center Nav (Desktop) */}
+          <nav className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 bg-[#9B7EBD]/80 backdrop-blur-md rounded-full h-[50px] items-center px-10 text-xl space-x-6">
+            <Link to="/" className="hover:text-gray-200 transition">Home</Link>
+            <Link to="/products" className="hover:text-gray-200 transition">Products</Link>
+            <Link to="/contact" className="hover:text-gray-200 transition">Contact</Link>
+            <Link to="/reviews" className="hover:text-gray-200 transition">Reviews</Link>
+          </nav>
+
+          {/* Right: Search + Cart + User */}
+          <div className="flex items-center gap-4">
+            {/* Search Input (Desktop only) */}
+            <div className="hidden lg:flex items-center border border-gray-300 rounded-lg">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="px-3 py-1 rounded-full text-black focus:outline-none"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              />
+            </div>
+
+            <UserData />
+            <Link to="/cart" className="text-2xl hover:text-secondary transition">
+              <BsCart4 />
+            </Link>
+          </div>
         </div>
+      </header>
 
-        {/* Center Nav Menu (Desktop) */}
-        <nav className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 bg-[#9B7EBD]/80 backdrop-blur-md rounded-full h-[50px] items-center px-10 text-xl space-x-6">
-          <Link to="/" className="hover:text-gray-200 transition">Home</Link>
-          <Link to="/products" className="hover:text-gray-200 transition">Products</Link>
-          <Link to="/contact" className="hover:text-gray-200 transition">Contact</Link>
-          <Link to="/reviews" className="hover:text-gray-200 transition">Reviews</Link>
-        </nav>
-
-        {/* Cart + User */}
-        <div className="flex items-center gap-4 ml-auto">
-          <UserData />
-          <Link to="/cart" className="text-2xl hover:text-secondary transition">
-            <BsCart4 />
-          </Link>
-        </div>
-
-        {/* Mobile Sidebar */}
-        {isOpen && (
+      {/* Mobile Sidebar */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex justify-start"
+          onClick={() => setIsOpen(false)}
+        >
           <div
-            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
+            className="w-[80%] max-w-xs h-full bg-gray-300 text-gray-800 shadow-lg flex flex-col p-6 overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
           >
-            <div
-              className="w-[280px] h-full bg-white text-gray-800 p-6 flex flex-col gap-6 shadow-lg"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-center">
-                <h2 className="text-xl font-bold">Menu</h2>
-                <GiHamburgerMenu
-                  className="text-2xl cursor-pointer"
-                  onClick={() => setIsOpen(false)}
-                />
-              </div>
-              <Link to="/" className="text-lg hover:text-primary" onClick={() => setIsOpen(false)}>Home</Link>
-              <Link to="/products" className="text-lg hover:text-primary" onClick={() => setIsOpen(false)}>Products</Link>
-              <Link to="/contact" className="text-lg hover:text-primary" onClick={() => setIsOpen(false)}>Contact</Link>
-              <Link to="/reviews" className="text-lg hover:text-primary" onClick={() => setIsOpen(false)}>Reviews</Link>
-              <Link to="/cart" className="text-2xl mt-auto text-gray-700 hover:text-primary" onClick={() => setIsOpen(false)}>
+            {/* Header with Close */}
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-bold">Menu</h2>
+              <GiHamburgerMenu
+                className="text-2xl cursor-pointer"
+                onClick={() => setIsOpen(false)}
+              />
+            </div>
+
+            {/* Nav Links */}
+            <nav className="flex flex-col gap-4 text-lg">
+              <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-primary">Home</Link>
+              <Link to="/products" onClick={() => setIsOpen(false)} className="hover:text-primary">Products</Link>
+              <Link to="/contact" onClick={() => setIsOpen(false)} className="hover:text-primary">Contact</Link>
+              <Link to="/reviews" onClick={() => setIsOpen(false)} className="hover:text-primary">Reviews</Link>
+            </nav>
+
+            {/* Search */}
+            <div className="mt-6">
+              <input
+                type="text"
+                placeholder="Search products..."
+                className="w-full px-3 py-2 border border-black rounded"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              />
+              <button
+                className="w-full mt-2 bg-primary text-white py-2 rounded hover:bg-secondary transition"
+                onClick={handleSearch}
+              >
+                Search
+              </button>
+            </div>
+
+            {/* Cart Icon at Bottom */}
+            <div className="mt-auto pt-6 border-t">
+              <Link
+                to="/cart"
+                className="text-2xl text-gray-700 hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
                 <BsCart4 />
               </Link>
             </div>
           </div>
-        )}
-      </header>
+        </div>
+      )}
 
-      {/* Spacer to offset fixed header height */}
+      {/* Spacer for fixed header */}
       <div className="h-[70px]" />
     </>
   );
