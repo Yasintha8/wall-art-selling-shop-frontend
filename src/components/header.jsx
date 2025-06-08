@@ -21,13 +21,13 @@ export default function Header() {
       <header className="fixed top-0 left-0 w-full h-[70px] flex items-center justify-between bg-primary text-white px-4 md:px-10 z-50 shadow-lg backdrop-blur-lg">
         <div className="flex items-center justify-between w-full">
           {/* Left: Hamburger + Logo */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <GiHamburgerMenu
               className="text-3xl lg:hidden cursor-pointer hover:scale-110 transition-transform"
               onClick={() => setIsOpen(true)}
             />
             <Link to="/" className="flex items-center">
-              <h1 className="text-xl sm:text-2xl sm:mr-2 md:text-3xl font-extrabold tracking-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight">
                 Vibe<span className="text-accent ">Canvas</span>
               </h1>
             </Link>
