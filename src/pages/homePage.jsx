@@ -8,6 +8,7 @@ import Home from "./client/home";
 import Contact from "./client/contact";
 import Review from "./client/review";
 import Footer from "../components/footer";
+import ProductsByCategory from "../components/productsByCategory";
 
 export default function HomePage() {
     return (
@@ -17,6 +18,7 @@ export default function HomePage() {
                 <Routes path="/*">
                     <Route path="/" element={<Home />} />
                     <Route path="/products" element={<ProductPage />} />
+                    <Route path="/products/:categoryName" element={<ProductsByCategory />} />
                     <Route path="/overview/:id" element={<ProductOverview/>} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/reviews" element={<Review />} />

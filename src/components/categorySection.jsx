@@ -14,27 +14,29 @@ export default function CategorySection() {
 
   return (
     <section className="my-16 px-6 max-w-7xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary-dark text-center">Wall Arts Category</h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary-dark text-center">
+        Wall Arts Category
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {categories.map((cat) => (
-          <div
-           onClick={()=>{
-            window.location.href = '/products'
-           }}
+          <Link
+            to={`/products/${encodeURIComponent(cat.name)}`}
             key={cat.id}
             className="group block rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition duration-300 bg-white"
           >
-            <div className="overflow-hidden cursor-pointer">
+            <div className="overflow-hidden">
               <img
                 src={cat.image}
                 alt={cat.name}
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="p-4 text-center cursor-pointer">
-              <h3 className="text-lg font-semibold text-gray-700 group-hover:text-blue-600 transition">{cat.name}</h3>
+            <div className="p-4 text-center">
+              <h3 className="text-lg font-semibold text-gray-700 group-hover:text-blue-600 transition">
+                {cat.name}
+              </h3>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
