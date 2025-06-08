@@ -27,7 +27,7 @@ export default function Header() {
               onClick={() => setIsOpen(true)}
             />
             <Link to="/" className="flex items-center">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight">
+              <h1 className="text-xl sm:text-2xl sm:mr-2 md:text-3xl font-extrabold tracking-tight">
                 Vibe<span className="text-accent ">Canvas</span>
               </h1>
             </Link>
