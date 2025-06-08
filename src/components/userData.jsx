@@ -40,24 +40,26 @@ export default function UserData() {
     window.location.href = "/login";
   };
 
-  if (!user) {
-    return (
-      <div className="flex items-center gap-4">
-        <Link
-          to="/login"
-          className="bg-accent text-white px-5 py-2 rounded-lg font-semibold hover:bg-white hover:text-accent transition"
-        >
-          Login
-        </Link>
-        <Link
-          to="/register"
-          className="bg-accent text-white px-5 py-2 rounded-lg font-semibold hover:bg-white hover:text-accent transition"
-        >
-          Register
-        </Link>
-      </div>
-    );
-  }
+if (!user) {
+  return (
+    <div className="flex items-center gap-2 sm:gap-4">
+      <Link
+        to="/login"
+        className="bg-accent text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-lg font-semibold text-sm sm:text-base hover:bg-white hover:text-accent transition"
+      >
+        Login
+      </Link>
+      <Link
+        to="/register"
+        className="bg-accent text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-lg font-semibold text-sm sm:text-base hover:bg-white hover:text-accent transition"
+      >
+        Register
+      </Link>
+    </div>
+  );
+}
+
+
 
   return (
     <div ref={dropdownRef} className="relative inline-block text-left">
