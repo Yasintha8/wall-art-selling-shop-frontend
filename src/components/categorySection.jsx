@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import livingroomImg from "../assets/livingroomImg.jpg";
 import ReligiousImg from "../assets/ReligiousImg.png";
 import kitchenImg from "../assets/kitchenImg.jpg";
-import resturantImg from "../assets/resturantImg.jpg";
+import resturantImg from "../assets/ResturantImg.jpg";
 
 export default function CategorySection() {
   const categories = [
