@@ -89,6 +89,15 @@ export default function UserData() {
         >
           Logout
         </button>
+        <div>
+          <Link
+            to="/orders"
+            className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 font-semibold transition"
+            role="menuitem"
+          >
+            Orders
+          </Link>
+        </div>
       </div>
     </div>
   );

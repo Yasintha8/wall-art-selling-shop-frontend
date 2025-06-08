@@ -98,14 +98,14 @@ export default function LoginPage() {
 
                     <button
                         onClick={handleLogin}
-                        className="w-full h-12 bg-green-600 text-white rounded-xl hover:bg-green-700 transition mb-4"
+                        className="w-full h-12 bg-green-600 text-white rounded-xl hover:bg-green-700 transition mb-4 cursor-pointer"
                     >
                         {loading ? "Loading..." : "Login"}
                     </button>
 
                     <button
                         onClick={loginWithGoogle}
-                        className="w-full h-12 bg-white text-gray-800 rounded-xl flex items-center justify-center hover:shadow-lg transition"
+                        className="w-full h-12 bg-white text-gray-800 rounded-xl flex items-center justify-center hover:shadow-lg transition cursor-pointer"
                     >
                         <FcGoogle className="text-2xl mr-2" />
                         {loading ? "Loading..." : "Login with Google"}

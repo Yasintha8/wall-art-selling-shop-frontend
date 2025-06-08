@@ -93,7 +93,7 @@ export default function RegisterPage() {
 
             <button
                 onClick={handleRegister}
-                className="w-full h-12 bg-green-600 text-white rounded-xl hover:bg-green-700 transition mb-4"
+                className="w-full h-12 bg-green-600 text-white rounded-xl hover:bg-green-700 transition mb-4 cursor-pointer"
             >
                 {loading ? "Creating Account..." : "Register"}
             </button>
