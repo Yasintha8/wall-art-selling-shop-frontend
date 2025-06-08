@@ -24,14 +24,14 @@ export default function CategorySection() {
             key={cat.id}
             className="group block rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition duration-300 bg-white"
           >
-            <div className="overflow-hidden">
+            <div className="overflow-hidden cursor-pointer">
               <img
                 src={cat.image}
                 alt={cat.name}
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="p-4 text-center">
+            <div className="p-4 text-center cursor-pointer">
               <h3 className="text-lg font-semibold text-gray-700 group-hover:text-blue-600 transition">{cat.name}</h3>
             </div>
           </div>

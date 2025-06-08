@@ -49,7 +49,7 @@ export default function TrendingProducts() {
           {products.map((product) => (
             <div
               key={product._id || product.productId}
-              className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition group relative"
+              className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition group relative cursor-pointer"
             >
               <Link to={`/overview/${product.productId}`}>
                 <img
@@ -57,8 +57,7 @@ export default function TrendingProducts() {
                   alt={product.name}
                   className="w-full h-[220px] object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-              </Link>
-              <div className="p-4">
+                <div className="p-4 cursor-pointer">
                 <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
                   {product.name}
                 </h3>
@@ -66,8 +65,9 @@ export default function TrendingProducts() {
                 <p className="text-lg font-bold text-accent mt-2">
                   LKR {product.price.toFixed(2)}
                 </p>
-
-                <button
+              </div>
+              </Link>
+              <button
                   onClick={() => {
                     addToCart(product, 1);
                     toast.success("Item added to cart");
@@ -78,7 +78,7 @@ export default function TrendingProducts() {
                 >
                   <FaShoppingCart className="w-5 h-5" />
                 </button>
-              </div>
+              
             </div>
           ))}
         </div>

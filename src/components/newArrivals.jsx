@@ -59,8 +59,7 @@ export default function NewArrivals() {
                   alt={product.name}
                   className="w-full h-[220px] object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-              </Link>
-              <div className="p-4">
+                <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
                   {product.name}
                 </h3>
@@ -68,8 +67,9 @@ export default function NewArrivals() {
                 <p className="text-lg font-bold text-accent mt-2">
                   LKR {product.price.toFixed(2)}
                 </p>
-
-                <button
+              </div>
+              </Link>
+              <button
                   onClick={() => {
                     addToCart(product, 1);
                     toast.success("Item added to cart");
@@ -80,7 +80,6 @@ export default function NewArrivals() {
                 >
                   <FaShoppingCart className="w-5 h-5" />
                 </button>
-              </div>
             </div>
           ))}
         </div>
