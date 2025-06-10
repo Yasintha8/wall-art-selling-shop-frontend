@@ -26,46 +26,47 @@ export default function Orders() {
     }, []);
 
     const handleDelete = (orderID) => {
-        toast(
-            (t) => (
-                <span className="flex flex-col gap-2">
-                    <p>Are you sure you want to delete this order?</p>
-                    <div className="flex gap-2 justify-end">
-                        <button
-                            onClick={() => {
-                                toast.dismiss(t.id);
-                                toast.promise(
-                                    axios.delete(import.meta.env.VITE_BACKEND_URL + "/api/order/" + orderID, {
+    toast(
+        (t) => (
+            <span className="flex flex-col gap-2">
+                <p>Are you sure you want to delete this order?</p>
+                <div className="flex gap-2 justify-end">
+                    <button
+                        onClick={async () => {
+                            toast.dismiss(t.id);
+                            try{
+                                await axios.delete(
+                                    import.meta.env.VITE_BACKEND_URL + "/api/order/" + orderID,
+                                    {
                                         headers: {
                                             Authorization: "Bearer " + token,
                                         },
-                                    }),
-                                    {
-                                        loading: "Deleting...",
-                                        success: () => {
-                                            setOrders((prev) => prev.filter((o) => o.orderID !== orderID));
-                                            return "Order deleted!";
-                                        },
-                                        error: "Failed to delete order",
                                     }
                                 );
-                            }}
-                            className="text-white bg-red-500 hover:bg-red-600 text-sm px-3 py-1 rounded"
-                        >
-                            Yes
-                        </button>
-                        <button
-                            onClick={() => toast.dismiss(t.id)}
-                            className="text-gray-700 border border-gray-300 hover:bg-gray-100 text-sm px-3 py-1 rounded"
-                        >
-                            No
-                        </button>
-                    </div>
-                </span>
-            ),
-            { duration: 10000 }
-        );
-    };
+                                toast.success("Order deleted successfully");
+                                setOrders((prev) => prev.filter((order) => order.orderID !== orderID));
+                            }catch (error) {
+                                console.error("Error Deleting Order:", error);
+                                toast.error("Failed to delete order. Please try again later.");
+                            }
+                        }}
+                        className="text-white bg-red-500 hover:bg-red-600 text-sm px-3 py-1 rounded cursor-pointer"
+                    >
+                        Yes
+                    </button>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="text-gray-700 border border-gray-300 hover:bg-gray-100 text-sm px-3 py-1 rounded cursor-pointer"
+                    >
+                        No
+                    </button>
+                </div>
+            </span>
+        ),
+        { duration: 10000 }
+    );
+};
+
 
     const formatDate = (isoDate) => {
         const options = { year: "numeric", month: "long", day: "numeric" };
