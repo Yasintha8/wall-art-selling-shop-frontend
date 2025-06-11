@@ -10,6 +10,8 @@ import Review from "./client/review";
 import Footer from "../components/footer";
 import ProductsByCategory from "../components/productsByCategory";
 import Orders from "./client/orders";
+import Profile from "./client/profile";
+import About from "./client/about";
 
 export default function HomePage() {
     return (
@@ -21,8 +23,10 @@ export default function HomePage() {
                     <Route path="/products" element={<ProductPage />} />
                     <Route path="/products/:categoryName" element={<ProductsByCategory />} />
                     <Route path="/overview/:id" element={<ProductOverview/>} />
+                    <Route path="/profile" element={<Profile/>} />
                     <Route path="/orders" element={<Orders/>} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="/reviews" element={<Review />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />

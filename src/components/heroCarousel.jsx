@@ -34,7 +34,7 @@ const HeroCarousel = () => {
         loop={true}
         autoplay={{ delay: 8000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        className="relative rounded-3xl overflow-hidden shadow-lg"
+        className="relative rounded-lg overflow-hidden shadow-lg"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>

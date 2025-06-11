@@ -1,13 +1,12 @@
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaSignOutAlt, FaBoxOpen } from "react-icons/fa";
 
 export default function UserData() {
   const [user, setUser] = useState(null);
   const [showLogout, setShowLogout] = useState(false);
   const token = localStorage.getItem("token");
-  const dropdownRef = useRef(null);
 
   useEffect(() => {
     if (token) {
@@ -22,17 +21,6 @@ export default function UserData() {
     }
   }, [token]);
 
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowLogout(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUser(null);
@@ -40,29 +28,27 @@ export default function UserData() {
     window.location.href = "/login";
   };
 
-if (!user) {
-  return (
-    <div className="flex items-center gap-2 sm:gap-4">
-      <Link
-        to="/login"
-        className="bg-accent text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-lg font-semibold text-sm sm:text-base hover:bg-white hover:text-accent transition"
-      >
-        Login
-      </Link>
-      <Link
-        to="/register"
-        className="bg-accent text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-lg font-semibold text-sm sm:text-base hover:bg-white hover:text-accent transition"
-      >
-        Register
-      </Link>
-    </div>
-  );
-}
-
-
+  if (!user) {
+    return (
+      <div className="flex items-center gap-2 sm:gap-4">
+        <Link
+          to="/login"
+          className="bg-accent text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-lg font-semibold text-sm sm:text-base hover:bg-white hover:text-accent transition"
+        >
+          Login
+        </Link>
+        <Link
+          to="/register"
+          className="bg-accent text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-lg font-semibold text-sm sm:text-base hover:bg-white hover:text-accent transition"
+        >
+          Register
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div ref={dropdownRef} className="relative inline-block text-left">
+    <div className="relative inline-block text-left">
       {/* User Icon */}
       <button
         onClick={() => setShowLogout((prev) => !prev)}
@@ -75,7 +61,7 @@ if (!user) {
 
       {/* Dropdown menu */}
       <div
-        className={`absolute right-0 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none transition transform ${
+        className={`absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none transition transform z-10 ${
           showLogout
             ? "opacity-100 scale-100"
             : "opacity-0 scale-95 pointer-events-none"
@@ -83,23 +69,32 @@ if (!user) {
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="user-menu"
+        onMouseLeave={() => setShowLogout(false)}
       >
-        <button
-          onClick={handleLogout}
-          className="block w-full px-4 py-2 text-left text-red-600 hover:bg-red-50 font-semibold transition"
+        <Link
+          to="/profile"
+          className="flex items-center gap-2 w-full px-4 py-2 text-left hover:text-gray-900 hover:underline text-gray-700 font-semibold transition cursor-pointer"
           role="menuitem"
         >
+          <FaUser className="text-base" />
+          Profile
+        </Link>
+        <Link
+          to="/orders"
+          className="flex items-center gap-2 w-full px-4 py-2 text-left hover:text-gray-900 hover:underline text-gray-700 font-semibold transition cursor-pointer"
+          role="menuitem"
+        >
+          <FaBoxOpen className="text-base" />
+          Orders
+        </Link>
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 w-full px-4 py-2 text-left hover:text-red-700 hover:underline text-red-600 font-semibold transition cursor-pointer"
+          role="menuitem"
+        >
+          <FaSignOutAlt className="text-base" />
           Logout
         </button>
-        <div>
-          <Link
-            to="/orders"
-            className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 font-semibold transition"
-            role="menuitem"
-          >
-            Orders
-          </Link>
-        </div>
       </div>
     </div>
   );
