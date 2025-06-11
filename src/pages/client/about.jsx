@@ -25,17 +25,16 @@ export default function About() {
 
           {/* Video Section */}
           <div className="w-full aspect-square sm:aspect-video rounded-lg shadow-lg overflow-hidden">
-            <video
-              src={abvideo}
-              controls
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
+  <video
+    src={abvideo}
+    controls
+    muted
+    loop
+    playsInline
+    className="w-full h-full object-cover"
+  />
+</div>
+
 
           {/* Image Section */}
           <div className="w-full aspect-square rounded-lg shadow-lg overflow-hidden">
