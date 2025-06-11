@@ -27,6 +27,7 @@ export default function Header() {
               onClick={() => setIsOpen(true)}
             />
             <Link to="/" className="flex items-center">
+              <img src="/header-logo.png" alt="Logo" className="w-10 h-10 mr-2" />
               <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight">
                 Vibe<span className="text-accent ">Canvas</span>
               </h1>
