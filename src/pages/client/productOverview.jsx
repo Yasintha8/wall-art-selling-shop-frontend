@@ -69,7 +69,7 @@ export default function ProductOverview() {
                                     console.log(getCart())
                                     toast.success("Product added to cart")
                                 }}
-                                className="bg-primary text-white w-full sm:w-[180px] h-[50px] rounded-lg hover:bg-white hover:border border-primary hover:text-primary transition-all duration-300"
+                                className="bg-primary text-white w-full sm:w-[180px] h-[50px] rounded-lg hover:bg-white hover:border border-primary hover:text-primary transition-all duration-300 cursor-pointer"
                             >
                                 Add to Cart
                             </button>
@@ -90,7 +90,7 @@ export default function ProductOverview() {
                                         }
                                     })
                                 }}
-                                className="bg-secondary text-white w-full sm:w-[180px] h-[50px] rounded-lg hover:bg-white hover:border border-secondary hover:text-secondary transition-all duration-300"
+                                className="bg-secondary text-white w-full sm:w-[180px] h-[50px] rounded-lg hover:bg-white hover:border border-secondary hover:text-secondary transition-all duration-300 cursor-pointer"
                             >
                                 Buy Now
                             </button>
