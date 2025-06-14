@@ -1,201 +1,211 @@
 import { TbTrash } from "react-icons/tb"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import axios from "axios"
 import toast from "react-hot-toast"
+import getCart from "../../utils/cart"
 
 export default function CheckoutPage() {
-
     const location = useLocation()
-    const [cart, setCart] = useState(location.state.items)
+    const navigate = useNavigate()
+
+    const [cart, setCart] = useState(() => {
+        if (location.state?.items) {
+            return location.state.items
+        } else {
+            return getCart()
+        }
+    })
     const [cartRefresh, setCartRefresh] = useState(false)
     const [name, setName] = useState("")
     const [address, setAddress] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
 
-    const navigate = useNavigate()
+    useEffect(() => {
+        // Redirect if cart is empty
+        if (!cart || cart.length === 0) {
+            toast.error("Your cart is empty")
+            navigate("/products")
+        }
+    }, [cart, navigate])
 
-    function PlaceOrder(){
+    function PlaceOrder() {
+        if (!name || !address || !phoneNumber) {
+            toast.error("Please fill all details")
+            return
+        }
+
         const orderData = {
-            name : name,
-            address : address,
-            phoneNumber : phoneNumber,
-            billItems : []
+            name,
+            address,
+            phoneNumber,
+            billItems: cart.map((item) => ({
+                productId: item.productId,
+                quantity: item.quantity
+            }))
         }
-        for(let i=0; i<cart.length; i++){
-            orderData.billItems[i] = {
-                productId : cart[i].productId,
-                quantity : cart[i].quantity
-            }
-        }
+
         const token = localStorage.getItem("token")
-        axios.post(import.meta.env.VITE_BACKEND_URL+"/api/order", orderData, {
+        axios.post(import.meta.env.VITE_BACKEND_URL + "/api/order", orderData, {
             headers: {
-                "Authorization": "Bearer "+token
+                "Authorization": "Bearer " + token
             }
-        }).then(()=>{
+        }).then(() => {
             toast.success("Order placed successfully")
             navigate("/")
-        }).catch((error)=>{
-            console.log(error)
+        }).catch((error) => {
+            console.error(error)
             toast.error("Order place failed")
         })
     }
 
-    function getTotal(){
-        let total = 0;
-        cart.forEach((product) => {
-            total += product.price * product.quantity
-        })
-        return total
+    function getTotal() {
+        return cart.reduce((total, product) => total + product.price * product.quantity, 0)
     }
 
-    function getTotalForLabelledPrice(){
-        let total = 0;
-        cart.forEach((product) => {
-            total += product.labeledPrice * product.quantity
-        })
-        return total
+    function getTotalForLabelledPrice() {
+        return cart.reduce((total, product) => total + product.labeledPrice * product.quantity, 0)
     }
-    
-    return(
-        <div className="w-full flex justify-center p-[50px] mt-6">
-            <div className="w-full lg:w-[700px]">
-                {
-                    cart.map(
-                        (item , index)=>{
-                            return(
-                            <div key={index} className="w-full lg:h-[100px] bg-white shadow-2xl my-[5px] flex lg:flex-row flex-col justify-between items-center relative p-[10px] rounded-lg">
-                                <button className="absolute right-4 lg:right-[-50px] bg-red-500 w-[40px] h-[40px] rounded-full text-white flex justify-center items-center shadow cursor-pointer hover:bg-red-600 transition-all duration-300"
-                                onClick={
-                                    ()=>{
-                                        const newCart = cart.filter((product) => product.productId !== item.productId)
-                                        setCart(newCart)
-                                    }
-                                }>
-                                    <TbTrash />
-                                </button>
-                                <img src={item.image} className="h-[150px] lg:h-full aspect-square object-cover rounded-lg" />
-                                {/* product details for dekstop */}
-                                <div className="hidden lg:flex flex-col h-full max-w-[300px] w-[300px] overflow-hidden">
-                                    <h1 className="text-xl font-bold cursor-pointer" onClick={()=>{window.location.href="/overview/"+item.productId}}>{item.name}</h1>
-                                    <h2 className="text-sm font-semibold text-gray-500">{item.altNames.join(" | ")}</h2>
-                                    <h2 className="text-lg font-semibold text-accent">LKR: {item.price.toFixed(2)}</h2>
-                                </div>
-                                {/* product details for mobile */}
-                                <div className="lg:hidden h-full max-w-[300px] w-[300px] overflow-hidden text-center">
-                                    <h1 className="text-lg font-bold cursor-pointer" onClick={()=>{window.location.href="/overview/"+item.productId}}>{item.name}</h1>
-                                    <h2 className="text-sm font-semibold text-gray-500">{item.altNames.join(" | ")}</h2>
-                                    <h2 className="text-lg font-semibold text-accent">LKR: {item.price.toFixed(2)}</h2>
-                                </div>
-                                <div className="h-full w-[100px] flex justify-center items-center">
-                                    <button className="text-2xl w-[20px] h-[20px] bg-gray-800 text-white rounded-full flex justify-center items-center cursor-pointer mx-[5px]"
-                                        onClick={
-                                            ()=>{
-                                                const newCart = cart
-                                                newCart[index].quantity -= 1
-                                                if(newCart[index].quantity <= 0)newCart[index].quantity = 1
+
+    return (
+        <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto">
+                <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Checkout</h1>
+                <p className="text-gray-600 mb-8">You have {cart.length} {cart.length === 1 ? 'item' : 'items'} in your order</p>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10">
+                    <div className="lg:col-span-8 space-y-6">
+                        {cart.map((item, index) => (
+                            <div key={index} className="bg-white rounded-xl shadow-md p-4 sm:p-6 space-y-2">
+                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-y-4 gap-x-6 text-center sm:text-left items-center">
+                                    <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        className="w-40 h-40 object-cover rounded-lg mx-auto sm:mx-0"
+                                    />
+
+                                    <div className="flex-1 min-w-0">
+                                        <h3
+                                            className="text-lg sm:text-xl font-semibold text-gray-800 cursor-pointer hover:text-primary transition"
+                                            onClick={() => window.location.href = `/overview/${item.productId}`}
+                                        >
+                                            {item.name}
+                                        </h3>
+                                        {item.altNames?.length > 0 && (
+                                            <p className="text-sm text-gray-500 mt-1">{item.altNames.join(" • ")}</p>
+                                        )}
+                                        <p className="text-base sm:text-lg text-primary font-semibold mt-2">LKR {item.price.toFixed(2)}</p>
+                                    </div>
+
+                                    <div className="flex items-center justify-center gap-2">
+                                        <button
+                                            onClick={() => {
+                                                const newCart = [...cart]
+                                                newCart[index].quantity = Math.max(1, newCart[index].quantity - 1)
                                                 setCart(newCart)
                                                 setCartRefresh(!cartRefresh)
+                                            }}
+                                            className="w-8 sm:w-10 h-8 sm:h-10 bg-white border rounded-md text-gray-600 hover:bg-gray-50"
+                                        >
+                                            -
+                                        </button>
+                                        <span className="w-8 sm:w-10 text-center font-medium text-gray-800">{item.quantity}</span>
+                                        <button
+                                            onClick={() => {
+                                                const newCart = [...cart]
+                                                newCart[index].quantity += 1
+                                                setCart(newCart)
+                                                setCartRefresh(!cartRefresh)
+                                            }}
+                                            className="w-8 sm:w-10 h-8 sm:h-10 bg-white border rounded-md text-gray-600 hover:bg-gray-50"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <div className="text-center sm:text-right min-w-[100px]">
+                                        <p className="text-sm text-gray-500">Total</p>
+                                        <p className="text-lg font-bold text-gray-900">LKR {(item.price * item.quantity).toFixed(2)}</p>
+                                    </div>
+
+                                    <button
+                                        onClick={() => {
+                                            const newCart = cart.filter((product) => product.productId !== item.productId)
+                                            setCart(newCart)
                                         }}
-                                    >-</button>
-                                    <h1 className="text-lg">{item.quantity}</h1>
-                                    <button className="text-lg w-[20px] h-[20px] bg-gray-800 text-white rounded-full flex justify-center items-center cursor-pointer mx-[5px]"
-                                        onClick={
-                                            ()=>{
-                                                 const newCart = cart
-                                                 newCart[index].quantity += 1
-                                                 setCart(newCart)
-                                                 setCartRefresh(!cartRefresh)
-                                            }
-                                        }
-                                    >+</button>
-                                </div>
-                                <div className="h-full w-[100px] flex justify-center items-center">
-                                    <h1 className="text-xl w-full text-end pr-2"> {(item.price * item.quantity).toFixed(2)}</h1>
+                                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition"
+                                    >
+                                        <TbTrash className="w-5 h-5" />
+                                    </button>
                                 </div>
                             </div>
-                        )
-                        }
-                    )
-                }
+                        ))}
+                    </div>
 
-                <div className="w-full flex justify-end mt-4">
-                    <h1 className="w-[100px] text-xl  text-end pr-2">Total</h1>
-                    <h1 className="w-[100px] text-xl  text-end pr-2">{getTotalForLabelledPrice().toFixed(2)}</h1>
-                </div>
+                    <div className="lg:col-span-4">
+                        <div className="bg-white rounded-xl shadow-md p-6 mt-8 lg:mt-0">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Order Summary</h2>
 
-                <div className="w-full flex justify-end">
-                    <h1 className="w-[100px] text-xl  text-end pr-2">Discount</h1>
-                    <h1 className="w-[100px] text-xl border-b-double text-end pr-2 border-b-2 ">{(getTotalForLabelledPrice()-getTotal()).toFixed(2)}</h1>
-                </div>
+                            <div className="space-y-4">
+                                <div className="flex justify-between text-gray-700 text-sm sm:text-base">
+                                    <span>Subtotal ({cart.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
+                                    <span>LKR {getTotalForLabelledPrice().toFixed(2)}</span>
+                                </div>
 
-                <div className="w-full flex justify-end">
-                    <h1 className="w-[100px] text-xl text-end pr-2">Net Total</h1>
-                    <h1 className="w-[100px] text-xl text-end pr-2 border-b-[4px] border-double">{getTotal().toFixed(2)}</h1>
-                </div>
+                                {(getTotalForLabelledPrice() - getTotal()) > 0 && (
+                                    <div className="flex justify-between text-green-600 text-sm sm:text-base">
+                                        <span>Discount</span>
+                                        <span>-LKR {(getTotalForLabelledPrice() - getTotal()).toFixed(2)}</span>
+                                    </div>
+                                )}
 
+                                <div className="border-t pt-4">
+                                    <div className="flex justify-between text-lg sm:text-xl font-semibold text-gray-900">
+                                        <span>Total</span>
+                                        <span>LKR {getTotal().toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                {/* Checkout Form */}
-            <div className="w-full mt-10 p-6 bg-white rounded-lg shadow-md space-y-6">
-                <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">
-                    Customer Details
-                </h2>
+                            <div className="mt-8 space-y-4">
+                                <input
+                                    type="text"
+                                    placeholder="Full Name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    className="w-full border border-gray-300 px-4 py-3 rounded-md text-sm"
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Delivery Address"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    className="w-full border border-gray-300 px-4 py-3 rounded-md text-sm"
+                                />
+                                <input
+                                    type="tel"
+                                    placeholder="Phone Number"
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                    className="w-full border border-gray-300 px-4 py-3 rounded-md text-sm"
+                                />
 
-                {/* Name Field */}
-                <div className="flex flex-col md:flex-row md:items-center gap-2">
-                    <label htmlFor="name" className="w-full md:w-[120px] text-lg font-medium text-gray-700">
-                    Name
-                    </label>
-                    <input
-                    type="text"
-                    id="name"
-                    className="w-full md:w-[300px] h-[50px] md:h-[45px] px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter your name"
-                    />
-                </div>
+                                <button
+                                    onClick={PlaceOrder}
+                                    className="w-full bg-primary text-white py-3 rounded-md font-semibold hover:bg-primary-dark text-sm cursor-pointer"
+                                >
+                                    Place Order
+                                </button>
 
-                {/* Address Field */}
-                <div className="flex flex-col md:flex-row md:items-center gap-2">
-                    <label htmlFor="address" className="w-full md:w-[120px] text-lg font-medium text-gray-700">
-                    Address
-                    </label>
-                    <input
-                    type="text"
-                    id="address"
-                    className="w-full md:w-[300px] h-[50px] md:h-[45px] px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Enter your address"
-                    />
-                </div>
-
-                {/* Phone Number Field */}
-                <div className="flex flex-col md:flex-row md:items-center gap-2">
-                    <label htmlFor="phone" className="w-full md:w-[120px] text-lg font-medium text-gray-700">
-                    Phone Number
-                    </label>
-                    <input
-                    type="text"
-                    id="phone"
-                    className="w-full md:w-[300px] h-[50px] md:h-[45px] px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    placeholder="Enter your phone number"
-                    />
-                </div>
-
-                {/* Submit Button */}
-                <div className="w-full flex justify-center md:justify-end">
-                    <button
-                    onClick={PlaceOrder}
-                    className="mt-4 w-full md:w-[200px] h-[50px] bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-all duration-300 cursor-pointer"
-                    >
-                    Place Order
-                    </button>
-                </div>
+                                <button
+                                    onClick={() => navigate("/products")}
+                                    className="w-full bg-gray-100 text-gray-700 py-3 rounded-md font-medium hover:bg-gray-200 text-sm cursor-pointer"
+                                >
+                                    Continue Shopping
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
