@@ -9,7 +9,6 @@ export default function CheckoutPage() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    // Use location.state.items if available, else fallback to localStorage cart
     const [cart, setCart] = useState(() => {
         if (location.state?.items) {
             return location.state.items
