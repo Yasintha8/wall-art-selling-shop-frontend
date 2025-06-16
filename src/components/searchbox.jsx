@@ -56,7 +56,7 @@ export default function SearchBox({
       {/* Search Button */}
       <button
         onClick={onSearch}
-        className="w-full md:w-[100px] h-[40px] bg-[var(--color-primary)] text-white rounded-md"
+        className="w-full md:w-[100px] h-[40px] bg-[var(--color-primary)] text-white rounded-md cursor-pointer"
       >
         Search
       </button>
@@ -64,7 +64,7 @@ export default function SearchBox({
       {/* Reset Button */}
       <button
         onClick={onReset}
-        className="w-full md:w-[100px] h-[40px] bg-[var(--color-primary)] text-white rounded-md"
+        className="w-full md:w-[100px] h-[40px] bg-[var(--color-primary)] text-white rounded-md cursor-pointer"
       >
         Reset
       </button>
