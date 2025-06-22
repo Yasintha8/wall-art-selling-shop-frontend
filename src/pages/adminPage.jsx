@@ -83,7 +83,7 @@ export default function AdminPage() {
       <main className="flex-1 p-8 overflow-auto rounded-r-lg bg-white shadow-inner">
         {userValidated ? (
           <Routes>
-            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/" element={<AdminDashboard />} />
             <Route path="/users" element={<Users />} />
             <Route path="/products" element={<AdminProductPage />} />
             <Route path="/orders" element={<AdminOrdersPage />} />
