@@ -176,7 +176,7 @@ export default function ProductOverview() {
                                         navigate("/checkout", {
                                             state: {
                                                 items: [{
-                                                    productId: product._id,
+                                                    productId: product.productId,
                                                     name: product.name,
                                                     altNames: product.altNames,
                                                     price: product.price,
