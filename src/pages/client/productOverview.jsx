@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import Loader from "../../components/loader"
 import ImageSlider from "../../components/imageSlider"
 import getCart, { addToCart } from "../../utils/cart"
+import RecommendedProducts from "../../components/recommendedProducts"
 
 export default function ProductOverview() {
     const params = useParams()
@@ -241,6 +242,7 @@ export default function ProductOverview() {
                     </div>
                 </div>
             )}
+            <RecommendedProducts />
         </div>
     )
 }
