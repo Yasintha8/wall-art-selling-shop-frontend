@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "./loader";
+import { Link } from "react-router-dom";
 
 export default function RecommendedProducts() {
   const [products, setProducts] = useState([]);
