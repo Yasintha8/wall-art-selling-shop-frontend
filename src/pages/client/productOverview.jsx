@@ -20,18 +20,20 @@ export default function ProductOverview() {
     const [selectedQuantity, setSelectedQuantity] = useState(1)
 
     useEffect(() => {
-        if (status === "loading") {
-            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product/${params.id}`)
-                .then((res) => {
-                    setProduct(res.data.product)
-                    setStatus("loaded")
-                })
-                .catch(() => {
-                    toast.error("Product is not available")
-                    setStatus("error")
-                })
-        }
-    }, [status, params.id])
+    setStatus("loading");
+
+    axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/product/${params.id}`)
+        .then((res) => {
+        setProduct(res.data.product);
+        setStatus("loaded");
+        window.scrollTo(0, 0);
+        })
+        .catch(() => {
+        toast.error("Product is not available");
+        setStatus("error");
+        });
+    }, [params.id]);
 
     const calculateDiscount = () => {
         if (product.labeledPrice > product.price) {
