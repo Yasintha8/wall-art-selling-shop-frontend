@@ -98,8 +98,11 @@ export default function CartPage() {
                                             {item.altNames?.length > 0 && (
                                                 <p className="text-sm text-gray-500 mt-1 text-center sm:text-left">{item.altNames.join(" • ")}</p>
                                             )}
+                                            <p className="text-sm text-gray-500 mt-1 text-center sm:text-left">
+                                                Size: {item.selectedSize || "N/A"}
+                                            </p>
                                             <p className="text-md sm:text-lg text-primary font-semibold mt-2 text-center sm:text-left">
-                                                LKR {item.price.toFixed(2)}
+                                                LKR {item.price ? item.price.toFixed(2) : item.labeledPrice.toFixed(2)}
                                             </p>
                                         </div>
 

@@ -41,9 +41,15 @@ export default function CheckoutPage() {
             phoneNumber,
             billItems: cart.map((item) => ({
                 productId: item.productId,
-                quantity: item.quantity
-            }))
-        }
+                name: item.name,
+                image: item.image,
+                quantity: item.quantity,
+                price: item.price,
+                size: item.selectedSize
+            })),
+            total: getTotal() 
+};
+
 
         const token = localStorage.getItem("token")
         axios.post(import.meta.env.VITE_BACKEND_URL + "/api/order", orderData, {
@@ -94,6 +100,7 @@ export default function CheckoutPage() {
                                         {item.altNames?.length > 0 && (
                                             <p className="text-sm text-gray-500 mt-1">{item.altNames.join(" • ")}</p>
                                         )}
+                                        <p className="text-sm text-gray-500 mt-1">Size: {item.selectedSize}</p>
                                         <p className="text-base sm:text-lg text-primary font-semibold mt-2">LKR {item.price.toFixed(2)}</p>
                                     </div>
 

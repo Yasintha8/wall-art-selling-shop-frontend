@@ -59,6 +59,7 @@ export function AdminOrdersPage() {
                             <thead className="bg-gray-100 text-gray-600 text-left">
                                 <tr>
                                     <th className="p-3">Order ID</th>
+                                    <th className="p-3">Size</th>
                                     <th className="p-3">Email</th>
                                     <th className="p-3">Customer</th>
                                     <th className="p-3">Address</th>
@@ -76,6 +77,9 @@ export function AdminOrdersPage() {
                                         className="border-t hover:bg-gray-50 transition"
                                     >
                                         <td className="p-3">{order.orderID}</td>
+                                        <td className="p-3">
+                                            {order.billItems.map((item) => item.size).join(", ")}
+                                        </td>
                                         <td className="p-3">{order.email}</td>
                                         <td className="p-3">{order.name}</td>
                                         <td className="p-3">{order.address}</td>

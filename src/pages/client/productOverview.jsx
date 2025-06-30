@@ -19,6 +19,18 @@ export default function ProductOverview() {
     const [status, setStatus] = useState("loading")
     const [selectedQuantity, setSelectedQuantity] = useState(1)
 
+    const [selectedSize, setSelectedSize] = useState("Small (12x18 inches)");
+
+    const SIZE_PRICE_MAP = {
+    "Small (12x18 inches)": 2500,
+    "Medium (18x24 inches)": 3500,
+    "Square Medium (24x24 inches)": 4000,
+    "Large (24x36 inches)": 5000,
+    "Square Large (36x36 inches)": 6000,
+    "Extra Large (36x48 inches)": 7500,
+    };
+
+
     useEffect(() => {
     setStatus("loading");
 
@@ -112,7 +124,7 @@ export default function ProductOverview() {
                             <div className="bg-gray-50 rounded-xl p-4 sm:p-6 border border-gray-200">
                                 <div className="flex items-baseline space-x-3 mb-3">
                                     <span className="text-2xl sm:text-4xl font-bold text-primary">
-                                        LKR {product.price.toFixed(2)}
+                                        LKR {SIZE_PRICE_MAP[selectedSize].toFixed(2)}
                                     </span>
                                     {product.labeledPrice > product.price && (
                                         <span className="text-lg sm:text-2xl text-gray-400 line-through">
@@ -135,6 +147,21 @@ export default function ProductOverview() {
                                     {product.description}
                                 </p>
                             </div>
+
+                            {/* Sizes */}
+
+                            <div>
+                                <label className="text-sm font-medium text-gray-900 block mb-2">Size:</label>
+                                <select
+                                    value={selectedSize}
+                                    onChange={(e) => setSelectedSize(e.target.value)}
+                                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                                >
+                                    {Object.keys(SIZE_PRICE_MAP).map((size, index) => (
+                                    <option key={index} value={size}>{size}</option>
+                                    ))}
+                                </select>
+                                </div>
 
                             {/* Quantity Selector */}
                             <div className="flex items-center space-x-3">
@@ -162,11 +189,21 @@ export default function ProductOverview() {
                             <div className="space-y-3 sm:space-y-4">
                                 <button
                                     onClick={() => {
-                                        addToCart(product, selectedQuantity)
+                                        addToCart(
+                                    {
+                                        ...product,
+                                        selectedSize: selectedSize,
+                                        price: SIZE_PRICE_MAP[selectedSize],
+                                        labeledPrice: SIZE_PRICE_MAP[selectedSize],
+                                        image: product.images[0],
+                                    },
+                                    selectedQuantity
+                                    );
+
                                         toast.success(`${selectedQuantity} item(s) added to cart`)
                                         console.log(getCart())
                                     }}
-                                    className="w-full h-12 sm:h-14 bg-primary text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-primary/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2"
+                                    className="w-full h-12 sm:h-14 bg-primary text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-primary/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6" />
@@ -179,18 +216,20 @@ export default function ProductOverview() {
                                         navigate("/checkout", {
                                             state: {
                                                 items: [{
-                                                    productId: product.productId,
-                                                    name: product.name,
-                                                    altNames: product.altNames,
-                                                    price: product.price,
-                                                    labeledPrice: product.labeledPrice,
-                                                    image: product.images[0],
-                                                    quantity: selectedQuantity
+                                                productId: product.productId,
+                                                name: product.name,
+                                                altNames: product.altNames,
+                                                price: SIZE_PRICE_MAP[selectedSize],
+                                                labeledPrice: SIZE_PRICE_MAP[selectedSize],
+                                                image: product.images[0],
+                                                quantity: selectedQuantity,
+                                                size: selectedSize
                                                 }]
                                             }
-                                        })
+                                            });
+
                                     }}
-                                    className="w-full h-12 sm:h-14 bg-gradient-to-r from-secondary to-secondary/90 text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:shadow-xl hover:from-secondary/90 hover:to-secondary transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2"
+                                    className="w-full h-12 sm:h-14 bg-gradient-to-r from-secondary to-secondary/90 text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:shadow-xl hover:from-secondary/90 hover:to-secondary transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
