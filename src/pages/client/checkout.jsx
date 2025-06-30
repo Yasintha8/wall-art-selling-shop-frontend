@@ -105,7 +105,7 @@ export default function CheckoutPage() {
                                                 setCart(newCart)
                                                 setCartRefresh(!cartRefresh)
                                             }}
-                                            className="w-8 sm:w-10 h-8 sm:h-10 bg-white border rounded-md text-gray-600 hover:bg-gray-50"
+                                            className="w-8 sm:w-10 h-8 sm:h-10 bg-white border rounded-md text-gray-600 hover:bg-gray-50 cursor-pointer"
                                         >
                                             -
                                         </button>
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
                                                 setCart(newCart)
                                                 setCartRefresh(!cartRefresh)
                                             }}
-                                            className="w-8 sm:w-10 h-8 sm:h-10 bg-white border rounded-md text-gray-600 hover:bg-gray-50"
+                                            className="w-8 sm:w-10 h-8 sm:h-10 bg-white border rounded-md text-gray-600 hover:bg-gray-50 cursor-pointer"
                                         >
                                             +
                                         </button>
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
                                             const newCart = cart.filter((product) => product.productId !== item.productId)
                                             setCart(newCart)
                                         }}
-                                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition"
+                                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition cursor-pointer"
                                     >
                                         <TbTrash className="w-5 h-5" />
                                     </button>

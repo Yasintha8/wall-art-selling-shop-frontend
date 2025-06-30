@@ -138,7 +138,7 @@ export default function Review() {
             </div>
             <button
               type="submit"
-              className="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded transition cursor-pointer"
+              className="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-6 rounded transition cursor-pointer"
             >
               Submit Review
             </button>

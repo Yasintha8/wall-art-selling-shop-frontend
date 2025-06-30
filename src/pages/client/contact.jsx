@@ -99,7 +99,7 @@ export default function Contact() {
           <div className="text-center">
             <button
               type="submit"
-              className="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-10 py-3 rounded-full shadow-lg transition-all duration-300"
+              className="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-10 py-3 rounded-xl shadow-lg transition-all duration-300 cursor-pointer"
             >
               {result ? result : "Send Message"}
             </button>

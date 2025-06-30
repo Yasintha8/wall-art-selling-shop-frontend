@@ -46,7 +46,7 @@ export default function AdminPage() {
   }, [navigate]);
 
   const navLinks = [
-    { to: "/admin/dashboard", label: "Dashboard", icon: <FaFileInvoice /> },
+    { to: "/admin/", label: "Dashboard", icon: <FaFileInvoice /> },
     { to: "/admin/users", label: "Users", icon: <FaUsers /> },
     { to: "/admin/products", label: "Products", icon: <MdOutlineStorefront /> },
     { to: "/admin/orders", label: "Orders", icon: <FaFileInvoice /> },

@@ -67,13 +67,13 @@ export default function Orders() {
                                             setDeletingOrderId(null);
                                         }
                                     }}
-                                    className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-sm font-medium px-4 py-2 rounded-full transition-all transform hover:scale-105"
+                                    className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-sm font-medium px-4 py-2 rounded-full transition-all transform hover:scale-105 cursor-pointer"
                                 >
                                     Yes, Delete
                                 </button>
                                 <button
                                     onClick={() => toast.dismiss(t.id)}
-                                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full transition-colors"
+                                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full transition-colors cursor-pointer"
                                 >
                                     Cancel
                                 </button>
@@ -205,7 +205,7 @@ export default function Orders() {
                         <p className="text-gray-600 mb-8 max-w-md mx-auto">Start your shopping journey! Browse our amazing products and place your first order.</p>
                         <button 
                             onClick={() => window.location.href = "/"}
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
                         >
                             Explore Products
                         </button>

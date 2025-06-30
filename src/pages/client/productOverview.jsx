@@ -144,7 +144,7 @@ export default function ProductOverview() {
                                 <div className="flex items-center border border-gray-300 rounded-lg">
                                     <button
                                         onClick={() => setSelectedQuantity(Math.max(1, selectedQuantity - 1))}
-                                        className="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors"
+                                        className="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
                                     >
                                         -
                                     </button>
@@ -153,7 +153,7 @@ export default function ProductOverview() {
                                     </span>
                                     <button
                                         onClick={() => setSelectedQuantity(selectedQuantity + 1)}
-                                        className="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors"
+                                        className="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
                                     >
                                         +
                                     </button>
