@@ -7,7 +7,7 @@ export default function TrustSection() {
         </svg>
       ),
       title: "Free Shipping & Returns",
-      description: "Enjoy complimentary worldwide shipping on all orders over $50. Hassle-free 30-day returns with prepaid labels.",
+      description: "Enjoy complimentary worldwide shipping on all orders. Hassle-free 30-day returns with prepaid labels.",
       gradient: "from-blue-500 to-cyan-500",
       bgGradient: "from-blue-50 to-cyan-50",
       iconBg: "bg-gradient-to-br from-blue-100 to-cyan-100",

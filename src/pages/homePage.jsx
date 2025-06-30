@@ -14,6 +14,9 @@ import Profile from "./client/profile";
 import About from "./client/about";
 import ReturnsAndExchanges from "./client/returnsAndExchanges";
 import ShippingInfo from "./client/shippingInfo";
+import PrivacyPolicy from "./client/privacyPolicy";
+import TermsOfService from "./client/termsOfService";
+import FAQ from "./client/faq";
 
 export default function HomePage() {
     return (
@@ -32,6 +35,9 @@ export default function HomePage() {
                     <Route path="/reviews" element={<Review />} />
                     <Route path="/returns-and-exchanges" element={<ReturnsAndExchanges />} />
                     <Route path="/shipping-info" element={<ShippingInfo />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/terms" element={<TermsOfService />} />
+                    <Route path="/faq" element={<FAQ />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/*" element={<h1>404 Not Found</h1>} />

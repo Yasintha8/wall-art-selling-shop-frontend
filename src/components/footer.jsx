@@ -29,7 +29,7 @@ export default function Footer() {
           <ul className="space-y-2">
             <li><a href="/returns-and-exchanges" className="hover:text-white transition">Returns & Exchanges</a></li>
             <li><a href="/shipping-info" className="hover:text-white transition">Shipping Info</a></li>
-            <li><a href="/privacy" className="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/privacy-policy" className="hover:text-white transition">Privacy Policy</a></li>
             <li><a href="/terms" className="hover:text-white transition">Terms of Service</a></li>
           </ul>
         </div>
@@ -37,10 +37,10 @@ export default function Footer() {
         {/* Contact Info */}
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">Contact Us</h3>
-          <p>1234 Market Street</p>
-          <p>San Francisco, CA 94103</p>
-          <p>Email: <a href="mailto:support@vibecanvas.com" className="hover:text-white transition">support@yourbrand.com</a></p>
-          <p>Phone: <a href="tel:+1234567890" className="hover:text-white transition">+1 (234) 567-890</a></p>
+          <p>123 Main Street</p>
+          <p>Colombo</p>
+          <p>Email: <a href="mailto:support@vibecanvas.com" className="hover:text-white transition">support@vibecanvas.com</a></p>
+          <p>Phone: <a href="tel:+1234567890" className="hover:text-white transition">+94 701234567</a></p>
         </div>
       </div>
 
