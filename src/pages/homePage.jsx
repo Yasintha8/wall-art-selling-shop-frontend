@@ -12,6 +12,8 @@ import ProductsByCategory from "../components/productsByCategory";
 import Orders from "./client/orders";
 import Profile from "./client/profile";
 import About from "./client/about";
+import ReturnsAndExchanges from "./client/returnsAndExchanges";
+import ShippingInfo from "./client/shippingInfo";
 
 export default function HomePage() {
     return (
@@ -28,6 +30,8 @@ export default function HomePage() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/reviews" element={<Review />} />
+                    <Route path="/returns-and-exchanges" element={<ReturnsAndExchanges />} />
+                    <Route path="/shipping-info" element={<ShippingInfo />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/*" element={<h1>404 Not Found</h1>} />

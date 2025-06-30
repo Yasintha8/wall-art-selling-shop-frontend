@@ -26,7 +26,7 @@ const HeroCarousel = () => {
   ];
 
   return (
-    <section className="text-white my-10 px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
+    <section className="text-white my-8 px-4 sm:px-6 md:px-8 lg:px-12 max-w-9xl mx-auto">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={0}

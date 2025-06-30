@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Loader from "../../components/loader";
 import ProductCard from "../../components/product-card";
 import SearchBox from "../../components/searchbox";
+import { GiShop } from "react-icons/gi";
 
 export default function ProductPage() {
   const [productList, setProductList] = useState([]);
@@ -81,7 +82,18 @@ export default function ProductPage() {
           )}
         </div>
       ) : (
-        <Loader />
+        <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 mb-20">
+          <div className="text-center">
+            <div className="relative w-20 h-20 mx-auto mb-8">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-ping opacity-75"></div>
+              <div className="relative w-full h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <GiShop className="text-white text-2xl" />
+              </div>
+            </div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">Loading Products</h2>
+            <p className="text-gray-600">Please wait while we fetch the products...</p>
+          </div>
+        </div>
       )}
     </div>
   );

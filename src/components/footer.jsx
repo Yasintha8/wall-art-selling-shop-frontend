@@ -27,8 +27,8 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">Customer Service</h3>
           <ul className="space-y-2">
-            <li><a href="/returns" className="hover:text-white transition">Returns & Exchanges</a></li>
-            <li><a href="/shipping" className="hover:text-white transition">Shipping Info</a></li>
+            <li><a href="/returns-and-exchanges" className="hover:text-white transition">Returns & Exchanges</a></li>
+            <li><a href="/shipping-info" className="hover:text-white transition">Shipping Info</a></li>
             <li><a href="/privacy" className="hover:text-white transition">Privacy Policy</a></li>
             <li><a href="/terms" className="hover:text-white transition">Terms of Service</a></li>
           </ul>
