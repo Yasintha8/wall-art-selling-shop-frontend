@@ -11,7 +11,7 @@ export default function ProductPage() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["All", "Living Rooms", "Religious", "Kitchen", "Resturant"];
+  const categories = ["All", "Living Room", "Religious", "Kitchen", "Resturant"];
 
   useEffect(() => {
     fetchProducts();

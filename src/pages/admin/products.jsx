@@ -87,7 +87,7 @@ export default function AdminProductPage() {
                                         <div className="flex justify-center gap-4">
                                             <button
                                                 onClick={() => deleteProduct(product.productId)}
-                                                className="text-red-600 hover:text-red-800 transition"
+                                                className="text-red-600 hover:text-red-800 transition cursor-pointer"
                                                 title="Delete Product"
                                             >
                                                 <FaRegTrashAlt className="text-lg" />
@@ -98,7 +98,7 @@ export default function AdminProductPage() {
                                                         state: product,
                                                     })
                                                 }
-                                                className="text-blue-600 hover:text-blue-800 transition"
+                                                className="text-blue-600 hover:text-blue-800 transition cursor-pointer"
                                                 title="Edit Product"
                                             >
                                                 <GrEdit className="text-lg" />
