@@ -18,7 +18,7 @@ function App() {
       <ScrollToTop/>
       <Toaster position='top-right'/>
         <Routes path="/*">
-          <Route path='admin/*' element={<AdminPage />} />
+          <Route path='admin/*'/>
           <Route path="/admin/dashboard" element={<AdminPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/*" element={<HomePage />} />
