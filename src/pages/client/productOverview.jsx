@@ -161,14 +161,14 @@ export default function ProductOverview() {
                             </div>
 
                             {/* Buttons */}
-                            <div className="space-y-3 sm:space-y-4">
+                            <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
                                 <button
                                     onClick={() => {
                                         addToCart(product, selectedQuantity)
                                         toast.success(`${selectedQuantity} item(s) added to cart`)
                                         console.log(getCart())
                                     }}
-                                    className="w-full h-12 sm:h-14 bg-primary text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-primary/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
+                                    className="w-full sm:w-1/2 h-12 sm:h-14 bg-primary text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-primary-dark hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6" />
@@ -192,7 +192,7 @@ export default function ProductOverview() {
                                             }
                                         })
                                     }}
-                                    className="w-full h-12 sm:h-14 bg-gradient-to-r from-secondary to-secondary/90 text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:shadow-xl hover:from-secondary/90 hover:to-secondary transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
+                                    className="w-full sm:w-1/2 h-12 sm:h-14 bg-gradient-to-r from-secondary to-secondary/90 text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:shadow-xl hover:from-secondary/90 hover:to-secondary transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
