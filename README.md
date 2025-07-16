@@ -1,4 +1,4 @@
-# 🖼️ Wall Art E-commerce Web Application (MERN Stack)
+# Wall Art E-commerce Web Application (MERN Stack)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/React-v18-green.svg)
@@ -54,13 +54,5 @@ Both are maintained in separate GitHub repositories:
 | Auth      | JSON Web Token (JWT)          |
 | Styling   | CSS, Flexbox/Grid, Responsive |
 | State     | React Hooks, Context API      |
-
----
-
-## 🖥️ Screenshots
-
-<!-- Add your own screenshots here -->
-<!-- ![Home Page](./screenshots/home.png) -->
-<!-- ![Product Page](./screenshots/product.png) -->
 
 ---
