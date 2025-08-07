@@ -75,7 +75,7 @@ export default function LoginPage() {
     }   
 
     return (
-         <div className="w-full min-h-screen flex bg-[url('/login-bg.jpg')] bg-cover bg-center">
+         <div className="w-full min-h-screen flex bg-[url('/login-bg.jpg')] bg-cover bg-center bg-no-repeat">
             {/* Left Section - Login Form */}
             <div className="w-full md:w-1/2 flex justify-center items-center bg-black/40 p-4">
                 <div className="w-full max-w-md bg-white/10 backdrop-blur-md border border-white shadow-2xl rounded-xl p-8">
