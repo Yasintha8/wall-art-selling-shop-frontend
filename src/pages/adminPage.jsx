@@ -2,6 +2,7 @@ import { Link, Route, Routes, useNavigate, useLocation } from "react-router-dom"
 import { FaUsers } from "react-icons/fa6";
 import { MdOutlineStorefront } from "react-icons/md";
 import { FaFileInvoice } from "react-icons/fa";
+import { FaPowerOff } from "react-icons/fa6";
 import AdminProductPage from "./admin/products";
 import AddProductForm from "./admin/addProducts";
 import EditProductForm from "./admin/editProductForm";
@@ -55,7 +56,7 @@ export default function AdminPage() {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md flex flex-col p-6 space-y-6">
+      <div className="w-64 bg-white shadow-md flex flex-col p-6 space-y-6">
         <h2 className="text-2xl font-bold text-indigo-700 mb-4 border-b border-indigo-300 pb-2">
           Admin Panel
         </h2>
@@ -67,18 +68,35 @@ export default function AdminPage() {
                 key={to}
                 to={to}
                 className={`flex items-center gap-3 px-3 py-2 rounded-md font-medium transition-colors
-                  ${
-                    isActive
-                      ? "bg-indigo-600 text-white shadow-md"
-                      : "text-gray-700 hover:bg-indigo-100 hover:text-indigo-700"
+                  ${isActive
+                    ? "bg-indigo-600 text-white shadow-md"
+                    : "text-gray-700 hover:bg-indigo-100 hover:text-indigo-700"
                   }`}
               >
                 <span className="text-lg">{icon}</span> {label}
               </Link>
             );
           })}
+
+          
+
+          <div className="flex flex-col items-center justify-center mt-80 p-6 rounded-2xl text-center w-full max-w-xs mx-auto">
+            <hr className="w-3/2 border-t mt-2 border-gray-200 mb-4 justify-center ml-2" />
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                navigate("/");
+              }}
+              className="flex items-center justify-center gap-2 bg-red-500 text-white rounded-lg py-2 px-4 font-semibold transition duration-300 hover:bg-red-600 cursor-pointer"
+            >
+              <FaPowerOff />
+              Logout
+            </button>
+          </div>
+
+
         </nav>
-      </aside>
+      </div>
 
       <main className="flex-1 p-8 overflow-auto rounded-r-lg bg-white shadow-inner">
         {userValidated ? (
